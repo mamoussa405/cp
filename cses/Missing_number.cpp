@@ -1,5 +1,4 @@
-// #include <bits/stdc++.h>
-#include "std++.h"
+#include <bits/stdc++.h>
 using namespace std;
 // #define sint(t) scanf("%d",&t)
 // #define slint(t) scanf("%ld",&t)
@@ -19,11 +18,6 @@ using namespace std;
 #define nl "\n"
 #define mp make_pair
 #define pb push_back
-#define lb lower_bound
-#define ub upper_bound
-#define er equal_range
-#define print(arg) cout << arg << '\n';
-#define read(arg) cin >> arg;
 #define INF (int)1e9
 #define EPS 1e-9
 #define mod 1000000007
@@ -47,9 +41,31 @@ void setIO(string name = "")
 {
     cin.tie(nullptr);
     ios_base::sync_with_stdio(0);
-    if (name != "")
+    ifstream cin(name + ".in");
+    ofstream cout(name + ".out");
+}
+
+int main(void)
+{
+    int n, i, num = 1;
+    cin >> n;
+    vi v(n-1);
+    REP(i, n-1)
+        cin >> v[i];
+    sort(all(v));
+    if (*lower_bound(all(v), n) != n)
     {
-        ifstream cin(name + ".in");
-        ofstream cout(name + ".out");
+        cout << n << nl;
+        return 0;
     }
+    REP(i, n-1) 
+    {
+        if (num != v[i])
+        {
+            cout << num << nl;
+            break;
+        }
+        num++;
+    }
+    return 0;
 }
