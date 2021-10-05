@@ -42,13 +42,56 @@ typedef unsigned long int uint32;
 typedef long long int int64;
 typedef unsigned long long int  uint64;
 
-void setIO(string name = "")
+int main(void)
 {
-    cin.tie(nullptr);
-    ios_base::sync_with_stdio(0);
-    if (name != "")
+    int t;
+    cin >> t;
+    while (t--)
     {
-        ifstream cin(name + ".in");
-        ofstream cout(name + ".out");
+        int n,i,ans = 0;
+        cin >> n;
+        vector<int> v(n);
+        for(auto &x:v)
+            cin >> x;
+        REP(i, n) 
+        {
+            if (!(v[i]%2) && (i%2))
+            {
+                for(int j = i+1; j < n; ++j)
+                {
+                    if (v[j]%2)
+                    {
+                        swap(v[i], v[j]);
+                        ans++;
+                        break;
+                    }
+                }
+            }
+            else if (v[i]%2 && !(i%2))
+            {
+                for(int j = i+1; j < n; ++j)
+                {
+                    if (!(v[j]%2))
+                    {
+                        swap(v[i], v[j]);
+                        ans++;
+                        break;
+                    }
+                }
+            }
+        }
+        bool possible = true;
+        for(int k = 0; k < n; ++k)
+        {
+            if ((!(v[k]%2) && (k%2)) || (v[k]%2 && !(k%2)))
+            {
+                cout << -1 << nl;
+                possible = false;
+                break;
+            }
+        }
+        if (possible)
+            cout << ans << nl;
     }
+    return 0;
 }

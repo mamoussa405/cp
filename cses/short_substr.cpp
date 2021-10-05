@@ -42,13 +42,25 @@ typedef unsigned long int uint32;
 typedef long long int int64;
 typedef unsigned long long int  uint64;
 
-void setIO(string name = "")
+int main(void)
 {
-    cin.tie(nullptr);
-    ios_base::sync_with_stdio(0);
-    if (name != "")
+    int t;
+    cin >> t;
+    while (t--)
     {
-        ifstream cin(name + ".in");
-        ofstream cout(name + ".out");
+        string s;
+        cin >> s;
+        for(int i = 1 ; i < s.length() - 1; ++i)
+        {
+            if (s[i] == s[i-1])
+                s[i] = 'B';
+        }
+        for(auto x:s)
+        {
+            if (x != 'B')
+                cout << x;
+        }
+        cout << nl;
     }
+    return 0; 
 }
