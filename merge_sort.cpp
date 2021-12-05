@@ -26,16 +26,8 @@ vector<int> merge_sort(vector<int> v, int s, int e)
 	if (v.size() <= 1)
 		return v;
 	int mid = (s + e) / 2;
-	vector<int> left(v.begin() + s, v.begin() + mid + 1), right(v.begin() + mid + 1, v.begin() + e + 1);
-	cout << "------- call ---------" << endl;
-	for(auto x:left)
-		cout << x << " ";
-	cout << endl;
-	for(auto x:right)
-		cout << x << " ";
-	cout << endl;
-	cout << "----------------------" << endl;
-	return (merge(merge_sort(left, s, mid), merge_sort(right, mid + 1, e)));
+	vector<int> left(v.begin(), v.begin() + mid + 1), right(v.begin() + mid + 1, v.end());
+	return merge(merge_sort(left, s, mid), merge_sort(right, 0, right.size() - 1));
 }
 
 
