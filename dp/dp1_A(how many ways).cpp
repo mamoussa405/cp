@@ -60,9 +60,15 @@ void solve(void)
     int n;
     read(n);
     if (n%2)
+    {
         cout << 0 << nl;
-    else
-        cout << bexp(2, n / 2)  << nl;
+        return;
+    }
+    vector<int> dp(n/2);
+    dp[0] = 2;
+    for(size_t i = 0; i < dp.size() - 1; ++i)
+        dp[i + 1] = dp[i] * 2;
+    cout << dp[n/2 - 1] << nl;
 }
 int main(void)
 {
