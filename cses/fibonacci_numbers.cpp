@@ -23,6 +23,7 @@ using namespace std;
 #define er equal_range
 #define print(arg) cout << arg << '\n';
 #define read(arg) cin >> arg;
+const double GOLDEN_RATIO_FIBONACCI = 1.618034;
 #define EPS 1e-9
 const int mod  = static_cast<int>(1000000007);
 #define imax INT_MAX
@@ -40,19 +41,18 @@ typedef long int int32;
 typedef unsigned long int uint32;
 typedef long long int int64;
 typedef unsigned long long int  uint64;
-uint64 bexp(uint64 x, uint64 n)
+double bexp(double x, uint64 n)
 {
-    uint64  res = 1;
+    double res = 1;
     while (n)
     {
         if (n&1)
-            res = (res * x) % mod;
-        x = (x * x) % mod;
+            res *= x;
+        x *= x;
         n >>= 1;
     }
     return res; 
 }
-
 void setIO(string name = "")
 {
     ios_base::sync_with_stdio(0);
@@ -67,12 +67,16 @@ void setIO(string name = "")
 
 void solve(void)
 {
-
+    int n;
+    read(n);
+    uint64 ans = ((bexp(GOLDEN_RATIO_FIBONACCI, n)) - (bexp(1 - GOLDEN_RATIO_FIBONACCI, n))) / sqrt(5);
+    cout << ans << nl;
 }
 int main(void)
 {
     int t;
-    read(t);
+    // read(t);
+    t = 1;
     while (t--)
         solve();
     return 0;

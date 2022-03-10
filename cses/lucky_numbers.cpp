@@ -46,8 +46,8 @@ uint64 bexp(uint64 x, uint64 n)
     while (n)
     {
         if (n&1)
-            res = (res * x) % mod;
-        x = (x * x) % mod;
+            res = res * x;
+        x = x * x ;
         n >>= 1;
     }
     return res; 
@@ -67,12 +67,21 @@ void setIO(string name = "")
 
 void solve(void)
 {
-
+    int n;
+    read(n);
+    uint64 ans(0);
+    while (n)
+    {
+        ans += bexp(2,n);
+        n--;
+    }
+    cout << ans << nl; 
 }
 int main(void)
 {
     int t;
-    read(t);
+    // read(t);
+    t = 1;
     while (t--)
         solve();
     return 0;

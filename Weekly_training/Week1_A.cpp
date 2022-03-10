@@ -67,12 +67,24 @@ void setIO(string name = "")
 
 void solve(void)
 {
-
+    int k, r;
+    cin >> k >> r;
+    int ans = 1;
+    while (true)
+    {
+        if (!((ans * k) % 10) || ((ans * k) % 10) == r)
+        {
+            cout << ans << nl;
+            return;
+        }
+        ++ans;
+    }
 }
 int main(void)
 {
     int t;
-    read(t);
+    // read(t);
+    t = 1;
     while (t--)
         solve();
     return 0;

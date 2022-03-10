@@ -67,12 +67,30 @@ void setIO(string name = "")
 
 void solve(void)
 {
-
+    int n,m;
+    cin >> n >> m;
+    vector<int> v(n,0);
+    while (m--)
+    {
+        int l,r,k;
+        cin >> l >> r >> k;
+        for(; l < r; ++l,--r)
+        {
+            v[l] += k;
+            v[r] += k;
+        }
+        if ((r-l)%2)
+            v[l] += k;
+    }
+    for(auto x:v) 
+        cout << x << " ";
+    cout << nl;
 }
 int main(void)
 {
     int t;
-    read(t);
+    // read(t);
+    t = 1;
     while (t--)
         solve();
     return 0;

@@ -67,12 +67,15 @@ void setIO(string name = "")
 
 void solve(void)
 {
-
+	int n;
+	read(n);
+	cout << bexp(2,n) << nl;
 }
 int main(void)
 {
     int t;
-    read(t);
+    // read(t);
+	t = 1;
     while (t--)
         solve();
     return 0;

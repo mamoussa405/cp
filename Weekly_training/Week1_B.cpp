@@ -67,12 +67,21 @@ void setIO(string name = "")
 
 void solve(void)
 {
-
+    set<int> s;
+    int n = 4;
+    while (n--)
+    {
+        int num;
+        cin >> num;
+        s.insert(num);
+    }
+    cout << 4 - s.size() << nl;
 }
 int main(void)
 {
     int t;
-    read(t);
+    // read(t);
+    t = 1;
     while (t--)
         solve();
     return 0;

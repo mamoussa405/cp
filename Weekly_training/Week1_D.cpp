@@ -67,12 +67,29 @@ void setIO(string name = "")
 
 void solve(void)
 {
-
+    int64 n,b,d;
+    cin >> n >> b >> d;
+    int64 ans = 0;
+    int64 sum = 0;
+    while (n--)
+    {
+        int64 num;
+        cin >> num;
+        if (num <= b)
+            sum += num;
+        if (sum > d)
+        {
+            ++ans;
+            sum = 0;
+        }
+    }
+    cout << ans << nl;
 }
 int main(void)
 {
     int t;
-    read(t);
+    // read(t);
+    t = 1;
     while (t--)
         solve();
     return 0;

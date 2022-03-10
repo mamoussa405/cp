@@ -67,12 +67,24 @@ void setIO(string name = "")
 
 void solve(void)
 {
-
+    string s,t;
+    cin >> s >> t;
+    int ans = 1;
+    for(size_t i = 0, j = 0; i < t.size(); ++i)
+    {
+        if (t[i] == s[j])
+        {
+            ++j;
+            ++ans;
+        }
+    }
+    cout << ans << nl;
 }
 int main(void)
 {
     int t;
-    read(t);
+    // read(t);
+    t = 1;
     while (t--)
         solve();
     return 0;
