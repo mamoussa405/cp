@@ -1,0 +1,7 @@
+
+What is dp??
+
+dp is a programming technic to solove algorithmic problems, it's aim is to store results to reuse them to solve other subproblems.
+
+Steps to solve a dp problem:
+			|--------------> define the state you wanna store for example in fib numbers problem we store the state of the number F(n)
