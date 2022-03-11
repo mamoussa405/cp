@@ -5,5 +5,12 @@ dp is a programming technic to solove algorithmic problems, it's aim is to store
 
 Steps to solve a dp problem: PS: if you can figure out these steps you can solve the problem with dp, otherwise you can't, and note that you can't apply dp for every problem
 			|--------------> define the state you wanna store for example in fib numbers problem we store the state of the number F(n)
-			|--------------> define wich transition to do to move from a state to next one, for example in fib the transition is F(n) = F(n - 1) + F(n - 2)
+			|--------------> define wich transition (recurance) to do to move from a state to next one, for example in fib the transition is F(n) = F(n - 1) + F(n - 2)
 			|--------------> define the base case for example in fib the base cases are F(0) = 0 and F(1) = 1
+
+Trick 1:
+	How to change from rec dp ot iterative dp:
+		# this is the rec dp for fib problem F(n) = F(n - 1) + F(n - 2), here we are use functions
+		so just replace parenthises with brackets
+		# this is the iterative dp for fib problem F[n] = F[n - 1] + F[n - 2], here we are using arrays instead of functions
+							eaaaaaassyyyyyy right ???? 
