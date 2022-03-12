@@ -40,14 +40,14 @@ typedef long int int32;
 typedef unsigned long int uint32;
 typedef long long int int64;
 typedef unsigned long long int  uint64;
-uint64 bexp(uint64 x, uint64 n)
+uint64 bexp(uint64 x, uint64 n, uint64 modulo)
 {
     uint64  res = 1;
     while (n)
     {
         if (n&1)
-            res = (res * x) % mod;
-        x = (x * x) % mod;
+            res = (res * x) % modulo;
+        x = (x * x) % modulo;
         n >>= 1;
     }
     return res; 
@@ -67,24 +67,14 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    int k, r;
-    cin >> k >> r;
-    int ans = 1;
-    while (true)
-    {
-        if (!((ans * k) % 10) || ((ans * k) % 10) == r)
-        {
-            cout << ans << nl;
-            return;
-        }
-        ++ans;
-    }
+    uint64 a,b,c;
+    cin >> a >> b >> c;
+    cout << bexp(a, bexp(b,c,mod-1), mod) << nl;
 }
 int main(void)
 {
     int t;
-    // read(t);
-    t = 1;
+    read(t);
     while (t--)
         solve();
     return 0;

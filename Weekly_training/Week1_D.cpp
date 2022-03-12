@@ -67,18 +67,23 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    int k, r;
-    cin >> k >> r;
-    int ans = 1;
-    while (true)
+    int64 n,b,d;
+    cin >> n >> b >> d;
+    int64 ans = 0;
+    int64 sum = 0;
+    while (n--)
     {
-        if (!((ans * k) % 10) || ((ans * k) % 10) == r)
+        int64 num;
+        cin >> num;
+        if (num <= b)
+            sum += num;
+        if (sum > d)
         {
-            cout << ans << nl;
-            return;
+            ++ans;
+            sum = 0;
         }
-        ++ans;
     }
+    cout << ans << nl;
 }
 int main(void)
 {

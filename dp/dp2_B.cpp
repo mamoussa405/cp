@@ -1,5 +1,4 @@
-// #include <bits/stdc++.h>
-#include "std++.h"
+#include <bits/stdc++.h>
 using namespace std;
 // #define sint(t) scanf("%d",&t)
 // #define slint(t) scanf("%ld",&t)
@@ -41,7 +40,6 @@ typedef long int int32;
 typedef unsigned long int uint32;
 typedef long long int int64;
 typedef unsigned long long int  uint64;
-int64 bexp(int64 x, int64 n) { int64 res = 1; while (n) { if (n&1) res *= x; x *= x; n >>= 1; } return res; }
 
 void setIO(string name = "")
 {
@@ -57,18 +55,33 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    int n;
-    read(n);
-    if (n%2)
+    int n,k;
+    cin >> n >> k;
+    string s;
+    cin >> s;
+    set<char> valid_keys;
+    while (k--)
     {
-        cout << 0 << nl;
-        return;
+        char c;
+        cin >> c;
+        valid_keys.insert(c);
     }
-    vector<int> dp(n/2);
-    dp[0] = 2;
-    for(size_t i = 0; i < n/2; ++i)
-        dp[i + 1] = dp[i] * 2;
-    cout << dp[n/2 - 1] << nl;
+    vector<int64> dp(n);
+    if (valid_keys.count(s[0]))
+        dp[0] = 1;
+    else
+        dp[0] = 0;
+    for(size_t i = 1; i < s.size(); ++i)
+    {
+        if (valid_keys.count(s[i]))
+            dp[i] = dp[i - 1] + 1;
+        else    
+            dp[i] = 0;
+    }
+    int64 sum = 0;
+    for(size_t i = 0; i < dp.size(); ++i)
+        sum += dp[i];
+    cout << sum << nl;
 }
 int main(void)
 {

@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+// #include <bits/stdc++.h>
+#include "std++.h"
 using namespace std;
 // #define sint(t) scanf("%d",&t)
 // #define slint(t) scanf("%ld",&t)
@@ -40,18 +41,7 @@ typedef long int int32;
 typedef unsigned long int uint32;
 typedef long long int int64;
 typedef unsigned long long int  uint64;
-uint64 bexp(uint64 x, uint64 n)
-{
-    uint64  res = 1;
-    while (n)
-    {
-        if (n&1)
-            res = (res * x) % mod;
-        x = (x * x) % mod;
-        n >>= 1;
-    }
-    return res; 
-}
+int64 bexp(int64 x, int64 n) { int64 res = 1; while (n) { if (n&1) res *= x; x *= x; n >>= 1; } return res; }
 
 void setIO(string name = "")
 {
@@ -65,20 +55,28 @@ void setIO(string name = "")
     }
 }
 
+int rec_dp(int n)
+{
+    if (n == 2)
+        return 2;
+    return rec_dp(n-2) * 2;
+}
+
 void solve(void)
 {
-    int k, r;
-    cin >> k >> r;
-    int ans = 1;
-    while (true)
+    int n;
+    read(n);
+    if (n%2)
     {
-        if (!((ans * k) % 10) || ((ans * k) % 10) == r)
-        {
-            cout << ans << nl;
-            return;
-        }
-        ++ans;
+        cout << 0 << nl;
+        return;
     }
+    vector<int> dp(n/2);
+    dp[0] = 2;
+    for(size_t i = 0; i < dp.size() - 1; ++i)
+        dp[i + 1] = dp[i] * 2;
+    cout << dp[n/2 - 1] << nl;
+    // cout << rec_dp(n) << nl;
 }
 int main(void)
 {
@@ -89,3 +87,6 @@ int main(void)
         solve();
     return 0;
 }
+
+
+// link: https://codeforces.com/gym/302977/problem/A

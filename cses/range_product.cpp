@@ -67,17 +67,23 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    int k, r;
-    cin >> k >> r;
-    int ans = 1;
-    while (true)
+    int n,q;
+    cin >> n >> q;
+    vector<uint64> v(n);
+    for(auto& x:v)
+        cin >> x;
+    for(size_t i = 1; i < v.size(); ++i)
+        v[i] *= v[i-1];
+    while (q--)
     {
-        if (!((ans * k) % 10) || ((ans * k) % 10) == r)
-        {
-            cout << ans << nl;
-            return;
-        }
-        ++ans;
+        int a,b;
+        cin >> a >> b;
+        a--;
+        b--;
+        if (!a)
+            cout << v[b] << nl;
+        else    
+            cout << v[b] / v[a-1] << nl;
     }
 }
 int main(void)

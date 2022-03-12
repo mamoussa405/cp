@@ -1,5 +1,4 @@
-// #include <bits/stdc++.h>
-#include "std++.h"
+#include <bits/stdc++.h>
 using namespace std;
 // #define sint(t) scanf("%d",&t)
 // #define slint(t) scanf("%ld",&t)
@@ -41,6 +40,18 @@ typedef long int int32;
 typedef unsigned long int uint32;
 typedef long long int int64;
 typedef unsigned long long int  uint64;
+uint64 bexp(uint64 x, uint64 n)
+{
+    uint64  res = 1;
+    while (n)
+    {
+        if (n&1)
+            res = (res * x) % mod;
+        x = (x * x) % mod;
+        n >>= 1;
+    }
+    return res; 
+}
 
 void setIO(string name = "")
 {
@@ -56,31 +67,21 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    int64 n,x;
-    cin >> n >> x;
-    vector<int64> v(n);
-    for(auto& l:v)
-        cin >> l;
-    sort(v.begin(), v.end());
-    int64 c = 0;
-    for(auto& l:v)
+    set<int> s;
+    int n = 4;
+    while (n--)
     {
-        if (l == 0)
-            continue;
-        auto it = lower_bound(v.begin(), v.end(), l*x);
-        if (*it == l*x)
-        {
-            l = 0;
-            *it = 0;
-            c += 2;
-        }
+        int num;
+        cin >> num;
+        s.insert(num);
     }
-    cout << n - c << nl;
+    cout << 4 - s.size() << nl;
 }
 int main(void)
 {
     int t;
-    read(t);
+    // read(t);
+    t = 1;
     while (t--)
         solve();
     return 0;

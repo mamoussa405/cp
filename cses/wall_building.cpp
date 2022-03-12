@@ -1,5 +1,4 @@
-// #include <bits/stdc++.h>
-#include "std++.h"
+#include <bits/stdc++.h>
 using namespace std;
 // #define sint(t) scanf("%d",&t)
 // #define slint(t) scanf("%ld",&t)
@@ -24,32 +23,75 @@ using namespace std;
 #define er equal_range
 #define print(arg) cout << arg << '\n';
 #define read(arg) cin >> arg;
-#define INF (int)1e9
 #define EPS 1e-9
-#define mod 1000000007
+const int mod  = static_cast<int>(1000000007);
 #define imax INT_MAX
 #define imin INT_MIN
-const double pi = acos(-1.0);
+// const double pi = acos(-1.0);
 typedef pair<int, int> pii;
 typedef vector<int> vi;
 typedef vector<string> vs;
-typedef vector<pii> vii;
+typedef vector<pii> vpi;
 typedef vector<vi> vvi;
-typedef map<int, int> mpii;
-typedef set<int> seti;
-typedef multiset<int> mseti;
+typedef map<int, int> mii;
+typedef set<int> si;
+typedef multiset<int> msi;
 typedef long int int32;
 typedef unsigned long int uint32;
 typedef long long int int64;
 typedef unsigned long long int  uint64;
+uint64 bexp(uint64 x, uint64 n)
+{
+    uint64  res = 1;
+    while (n)
+    {
+        if (n&1)
+            res = (res * x) % mod;
+        x = (x * x) % mod;
+        n >>= 1;
+    }
+    return res; 
+}
 
 void setIO(string name = "")
 {
-    cin.tie(nullptr);
     ios_base::sync_with_stdio(0);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
     if (name != "")
     {
         ifstream cin(name + ".in");
         ofstream cout(name + ".out");
     }
+}
+
+void solve(void)
+{
+    int n,m;
+    cin >> n >> m;
+    vector<int> v(n,0);
+    while (m--)
+    {
+        int l,r,k;
+        cin >> l >> r >> k;
+        for(; l < r; ++l,--r)
+        {
+            v[l] += k;
+            v[r] += k;
+        }
+        if ((r-l)%2)
+            v[l] += k;
+    }
+    for(auto x:v) 
+        cout << x << " ";
+    cout << nl;
+}
+int main(void)
+{
+    int t;
+    // read(t);
+    t = 1;
+    while (t--)
+        solve();
+    return 0;
 }

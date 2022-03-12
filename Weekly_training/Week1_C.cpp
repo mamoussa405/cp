@@ -1,5 +1,4 @@
-// #include <bits/stdc++.h>
-#include "std++.h"
+#include <bits/stdc++.h>
 using namespace std;
 // #define sint(t) scanf("%d",&t)
 // #define slint(t) scanf("%ld",&t)
@@ -41,6 +40,18 @@ typedef long int int32;
 typedef unsigned long int uint32;
 typedef long long int int64;
 typedef unsigned long long int  uint64;
+uint64 bexp(uint64 x, uint64 n)
+{
+    uint64  res = 1;
+    while (n)
+    {
+        if (n&1)
+            res = (res * x) % mod;
+        x = (x * x) % mod;
+        n >>= 1;
+    }
+    return res; 
+}
 
 void setIO(string name = "")
 {
@@ -56,44 +67,24 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    int64 n;
-    cin >> n;
-    int64 max = 0;
-    vector<int> v,sorted_v;
-    while (n--)
+    string s,t;
+    cin >> s >> t;
+    int ans = 1;
+    for(size_t i = 0, j = 0; i < t.size(); ++i)
     {
-        int64 num;
-        cin >> num;
-        v.push_back(num);
-        sorted_v.push_back(num);
-    }
-    sort(sorted_v.begin(), sorted_v.end());
-    int i = 0, j = 0; 
-    while (i < v.size() || j < sorted_v.size())
-    {
-        if (v[i] > sorted_v[j] && ((v[i] + sorted_v[j]) % 2 == 0))
+        if (t[i] == s[j])
         {
-            cout << "NO" << nl;
-            return;
-        }
-        if (sorted_v[j] > v[i] && i < v.size())
-            i++;
-        else if (v[i] > sorted_v[j] && j < sorted_v.size())
-            j++;
-        else
-        {
-            if (i < v.size())
-                i++;
-            if (j < sorted_v.size())
-                j++;
+            ++j;
+            ++ans;
         }
     }
-    cout << "YES"  << nl;
+    cout << ans << nl;
 }
 int main(void)
 {
     int t;
-    read(t);
+    // read(t);
+    t = 1;
     while (t--)
         solve();
     return 0;

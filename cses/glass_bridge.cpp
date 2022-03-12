@@ -67,17 +67,60 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    int k, r;
-    cin >> k >> r;
-    int ans = 1;
-    while (true)
+    int n,m,q;
+    cin >> n >> m;
+    char arr[n][m];
+    uint64 prefix_sum[n][m];
+    for(size_t i = 0; i < n; ++i)
     {
-        if (!((ans * k) % 10) || ((ans * k) % 10) == r)
+        for(size_t j = 0; j < m; ++j)
+            cin >> arr[i][j];
+    }
+    for (size_t i = 0; i < n; i++)
+    {
+        for(size_t j = 0; j < m; ++j)
         {
-            cout << ans << nl;
-            return;
+            if (arr[i][j] == 'r')
+            {
+                if (j > 0)
+                    prefix_sum[i][j] = prefix_sum[i][j-1] + 1;
+                else
+                    prefix_sum[i][j] = 1;
+            }
+            else
+            {
+                if (j > 0)
+                    prefix_sum[i][j] = prefix_sum[i][j-1];
+                else
+                    prefix_sum[i][j] = 0;
+            }
         }
-        ++ans;
+    }
+    for (size_t i = 1; i < m; i++)
+    {
+        for(size_t j = 1; j < n; ++j)
+        {
+            if (arr[j][i] == 'r')
+            {
+                if (j > 0)
+                    prefix_sum[j][i] = prefix_sum[j - 1][i] + 1;
+                else
+                    prefix_sum[j][i] = 1;
+            }
+            else
+            {
+                if (j > 0)
+                    prefix_sum[j][i] = prefix_sum[j - 1][i];
+                else
+                    prefix_sum[j][i] = 0;
+            }
+        }
+    }
+    for (size_t i = 0; i < n; ++i)
+    {
+        for(size_t j = 0; j < m; ++j)
+            cout << prefix_sum[i][j] << " ";
+        cout << nl;
     }
 }
 int main(void)

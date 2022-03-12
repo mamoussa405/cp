@@ -40,6 +40,18 @@ typedef long int int32;
 typedef unsigned long int uint32;
 typedef long long int int64;
 typedef unsigned long long int  uint64;
+uint64 bexp(uint64 x, uint64 n)
+{
+    uint64  res = 1;
+    while (n)
+    {
+        if (n&1)
+            res = (res * x) % mod;
+        x = (x * x) % mod;
+        n >>= 1;
+    }
+    return res; 
+}
 
 void setIO(string name = "")
 {
