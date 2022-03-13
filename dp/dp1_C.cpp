@@ -55,7 +55,6 @@ void setIO(string name = "")
 
 void solve(void)
 {
-
 }
 int main(void)
 {
@@ -64,7 +63,8 @@ int main(void)
     cout.tie(nullptr);
 
     int t;
-    read(t);
+    // read(t);
+    t = 1;
     while (t--)
         solve();
     return 0;
