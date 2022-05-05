@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+// #include <bits/stdc++.h>
+#include "std++.h"
 using namespace std;
 // #define sint(t) scanf("%d",&t)
 // #define slint(t) scanf("%ld",&t)
@@ -27,6 +28,7 @@ using namespace std;
 const int mod  = static_cast<int>(1000000007);
 #define imax INT_MAX
 #define imin INT_MIN
+#define INF  1e17
 // const double pi = acos(-1.0);
 typedef pair<int, int> pii;
 typedef vector<int> vi;
@@ -40,24 +42,10 @@ typedef long int int32;
 typedef unsigned long int uint32;
 typedef long long int int64;
 typedef unsigned long long int  uint64;
-uint64 bexp(uint64 x, uint64 n)
-{
-    uint64  res = 1;
-    while (n)
-    {
-        if (n&1)
-            res = (res * x) % mod;
-        x = (x * x) % mod;
-        n >>= 1;
-    }
-    return res; 
-}
+uint64 bexp(uint64 x, uint64 n) { uint64  res = 1; while (n) { if (n&1) res = (res * x) % mod; x = (x * x) % mod; n >>= 1; } return res; }
 
 void setIO(string name = "")
 {
-    ios_base::sync_with_stdio(0);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
     if (name != "")
     {
         ifstream cin(name + ".in");
@@ -71,6 +59,10 @@ void solve(void)
 }
 int main(void)
 {
+    ios_base::sync_with_stdio(0);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+
     int t;
     read(t);
     while (t--)
