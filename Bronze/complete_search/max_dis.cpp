@@ -8,8 +8,8 @@ int main(void)
 {
   int n;
   cin >> n;
-  vector<int> x(n),y(n);
-  ll ans;
+  vector<ll> x(n),y(n);
+  ll ans{0};
   for (auto &e:x)
       cin >> e;
   for (auto &e:y)
@@ -22,6 +22,6 @@ int main(void)
       ans = max(ans, dis);
     }
   }
-  cout << ans * ans << std::endl;
+  cout << ans << std::endl;
   return 0;
 }

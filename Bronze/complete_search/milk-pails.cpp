@@ -60,19 +60,47 @@ void setIO(string name = "")
     cout.tie(nullptr);
     if (name != "")
     {
-      FILE* cin = freopen(string(name + ".in").c_str(), "r", stdin);
-      FILE* cout = freopen(string(name + ".out").c_str(), "w", stdout);
+     FILE* cin =  freopen(string(name + ".in").c_str(), "r", stdin);
+     FILE* cout =  freopen(string(name + ".out").c_str(), "w", stdout);
     }
 }
 
 void solve(void)
 {
-
+  int x,y,m;
+  int ans{0}, num_of_x, num_of_y;
+  cin >> x >> y >> m;
+  if (m%x == 0 || m%y == 0)
+  {
+    cout << m << nl;
+    return;
+  }
+  num_of_x = m/x;
+  num_of_y = m/y;
+  for(int i = 1; i <= num_of_x; ++i)
+  {
+    int res = (i*x);
+    if (res <= m)
+      ans = max(ans, res);
+    for(int j = 1; j <= num_of_y; ++j)
+    {
+      res = (j*y);
+      if (res <= m)
+        ans = max(ans, res);
+      res = (i*x) + (j*y);
+      if (res <= m)
+        ans = max(ans, res);
+      else
+        break;
+    }
+  }
+  cout << ans << nl;
 }
 int main(void)
 {
+    setIO("pails");
     int t;
-    read(t);
+    t = 1;
     while (t--)
         solve();
     return 0;

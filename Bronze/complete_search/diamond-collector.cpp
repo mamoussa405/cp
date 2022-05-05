@@ -67,12 +67,31 @@ void setIO(string name = "")
 
 void solve(void)
 {
-
+  int n,k;
+  cin >> n >> k;
+  vi d(n);
+  for(auto& x:d)
+    cin >> x;
+  int ans{0};
+  for(int i = 0; i < d.size(); ++i)
+  {
+    for(int j = i + 1; j < d.size(); ++j)
+    {
+      if (d[i] && d[j] && abs(d[i] - d[j]) == k)
+      {
+        d[i] = d[j] = 0;
+        ans += 2;
+        break;
+      }
+    }
+  }  
+  cout << ans << nl;
 }
 int main(void)
 {
+    setIO("diamond");
     int t;
-    read(t);
+    t = 1;
     while (t--)
         solve();
     return 0;

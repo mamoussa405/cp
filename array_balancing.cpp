@@ -60,14 +60,52 @@ void setIO(string name = "")
     cout.tie(nullptr);
     if (name != "")
     {
-      FILE* cin = freopen(string(name + ".in").c_str(), "r", stdin);
-      FILE* cout = freopen(string(name + ".out").c_str(), "w", stdout);
+        ifstream cin(name + ".in");
+        ofstream cout(name + ".out");
     }
+}
+
+int64 process(vector<int>& a, vector<int>& b)
+{
+    int64 ans_a = 0, ans_b = 0;
+
+    for(size_t i = 0; i < a.size() - 1; ++i)
+    {
+        ans_a += abs(a[i] - a[i+1]);
+        ans_b += abs(b[i] - b[i+1]);
+    }
+    return ans_a+ans_b;
 }
 
 void solve(void)
 {
-
+    int n;
+    cin >> n;
+    int64 ans = 1e18;
+    vector<int> a(n), b(n);
+    for(auto& x:a)
+        cin >> x;
+    for(auto& x:b)
+        cin >> x;
+    for(size_t i = 0; i < n; ++i)
+    {
+        // n n
+        ans = min(ans, process(a,b));
+        // n s
+        swap(a[i+1], b[i+1]);
+        ans = min(ans, process(a,b));
+        swap(a[i+1], b[i+1]);
+        // s n
+        swap(a[i], b[i]);
+        ans = min(ans, process(a,b));
+        // s s
+        swap(a[i+1], b[i+1]);
+        ans = min(ans, process(a,b));
+        // n n
+        swap(a[i], b[i]);
+        swap(a[i + 1], b[i + 1]);
+    }
+    cout << ans << nl;
 }
 int main(void)
 {

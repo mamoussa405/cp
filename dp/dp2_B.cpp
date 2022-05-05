@@ -59,21 +59,21 @@ void solve(void)
     cin >> n >> k;
     string s;
     cin >> s;
-    set<char> valid_keys;
+    bool valid_keys[26] = {false};
     while (k--)
     {
         char c;
         cin >> c;
-        valid_keys.insert(c);
+        valid_keys[c - 'a'] = true;
     }
     vector<int64> dp(n);
-    if (valid_keys.count(s[0]))
+    if (valid_keys[s[0] - 'a'])
         dp[0] = 1;
     else
         dp[0] = 0;
-    for(size_t i = 1; i < s.size(); ++i)
+    for(size_t i = 1; i < s.size(); ++i) // O(n)
     {
-        if (valid_keys.count(s[i]))
+        if (valid_keys[s[i] - 'a'])
             dp[i] = dp[i - 1] + 1;
         else    
             dp[i] = 0;
