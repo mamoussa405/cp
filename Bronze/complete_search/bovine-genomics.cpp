@@ -67,28 +67,39 @@ void setIO(string name = "")
 
 void solve(void)
 {
-  int n,k;
-  cin >> n >> k;
-  vi d(n);
-  for(auto& x:d)
-    cin >> x;
-  int ans{0};
-  for(int i = 0; i < d.size(); ++i)
-  {
-	  int tmp{0};
-    for(int j = 0; j < d.size() ; ++j)
+    int n,m;
+    cin >> n >> m;
+    vs spotty(n), plain(n);
+    for(auto& x:spotty)
+       cin >> x;
+    for(auto& x:plain) 
+       cin >> x;
+    int ans{0};
+    for(int p = 0; p < m; ++p)
     {
-	    if (d[j] >= d[i] && d[j] - d[i] <= k)
-		    ++tmp;
+        bool count_it{true};
+        for(int i = 0; i < n; ++i)
+        {
+            for(int k = 0; k < n; ++k)
+            {
+                if (spotty[i][p] == plain[k][p])
+                {
+                    count_it = false;
+                    break;
+                }
+            }
+            if (!count_it)
+                break;
+        }
+        ans = (count_it) ? ++ans:ans;
     }
-    ans = max(ans, tmp);
-  }  
-  cout << ans << nl;
+    cout << ans << nl;
 }
 int main(void)
 {
-    setIO("diamond");
+    setIO("cownomics");
     int t;
+    // read(t);
     t = 1;
     while (t--)
         solve();

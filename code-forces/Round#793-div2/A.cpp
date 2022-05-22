@@ -67,29 +67,37 @@ void setIO(string name = "")
 
 void solve(void)
 {
-  int n,k;
-  cin >> n >> k;
-  vi d(n);
-  for(auto& x:d)
-    cin >> x;
-  int ans{0};
-  for(int i = 0; i < d.size(); ++i)
-  {
-	  int tmp{0};
-    for(int j = 0; j < d.size() ; ++j)
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
+    int mid = n / 2;
+    int p1 = mid + 1;
+    int p2 = mid - 1;
+    int ans{1};
+    while (p1 < n)
     {
-	    if (d[j] >= d[i] && d[j] - d[i] <= k)
-		    ++tmp;
+        if (s[p1] == s[mid])
+            ++ans;
+        else
+            break;
+        p1++;
     }
-    ans = max(ans, tmp);
-  }  
-  cout << ans << nl;
+    while (p2 >= 0)
+    {
+        if (s[p2] == s[mid])
+            ++ans;
+        else
+            break;
+        --p2;
+    }
+    cout << ans << nl;
 }
 int main(void)
 {
-    setIO("diamond");
+    setIO("");
     int t;
-    t = 1;
+    read(t);
     while (t--)
         solve();
     return 0;

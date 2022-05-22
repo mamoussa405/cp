@@ -65,30 +65,58 @@ void setIO(string name = "")
     }
 }
 
+int64 some_reset(vi& time_line)
+{
+    int64 some{0};
+    for(auto& x:time_line)
+    {
+        if (x == 1)
+            some += 1;
+        x = 0;
+    }
+    return some;
+}
+
 void solve(void)
 {
-  int n,k;
-  cin >> n >> k;
-  vi d(n);
-  for(auto& x:d)
-    cin >> x;
-  int ans{0};
-  for(int i = 0; i < d.size(); ++i)
-  {
-	  int tmp{0};
-    for(int j = 0; j < d.size() ; ++j)
+    int n;
+    cin >> n;
+    vpi shifts(n);
+    for(auto& x:shifts)
     {
-	    if (d[j] >= d[i] && d[j] - d[i] <= k)
-		    ++tmp;
+        cin >> x.first >> x.second;
+        --x.first;
+        --x.second;
     }
-    ans = max(ans, tmp);
-  }  
-  cout << ans << nl;
+    vi time_line(1000);
+    int64 ans{0};
+    for(int i = 0; i < n; ++i)
+    {
+        for(int j = 0; j < n; ++j)
+        {
+            if (j != i)
+            {
+                for(int t = shifts[j].first; t <= shifts[j].second; ++t)
+                {
+                    if (t == shifts[j].second && !time_line[t])
+                    {
+                        time_line[t] = -1;
+                        continue;
+                    }
+                    if (!time_line[t] || time_line[t] == -1)
+                        time_line[t] = 1;
+                }
+            }
+        }
+        ans = max(ans, some_reset(time_line));
+    }
+    cout << ans << nl;
 }
 int main(void)
 {
-    setIO("diamond");
+    setIO("lifeguards");
     int t;
+    // read(t);
     t = 1;
     while (t--)
         solve();

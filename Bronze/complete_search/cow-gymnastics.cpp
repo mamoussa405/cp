@@ -65,30 +65,51 @@ void setIO(string name = "")
     }
 }
 
+int get_index(int n, vi& sessions)
+{
+    for(int i = 0; i < sessions.size(); ++i)
+        if (sessions[i] == n)
+            return i;
+    return 0;
+}
+
 void solve(void)
 {
-  int n,k;
-  cin >> n >> k;
-  vi d(n);
-  for(auto& x:d)
-    cin >> x;
-  int ans{0};
-  for(int i = 0; i < d.size(); ++i)
-  {
-	  int tmp{0};
-    for(int j = 0; j < d.size() ; ++j)
+    int k,n;
+    cin >> k >> n;
+    vvi sessions(k, vi(n));
+    for(int i = 0; i < k; ++i)
+        for(int j = 0; j < n; ++j)
+            cin >> sessions[i][j];
+    if (n == 1)
     {
-	    if (d[j] >= d[i] && d[j] - d[i] <= k)
-		    ++tmp;
+        cout << 0 << nl;
+        return; 
     }
-    ans = max(ans, tmp);
-  }  
-  cout << ans << nl;
+    vpi ans;
+    for(int j = 0; j < n; ++j)
+        for(int k = j + 1; k < n; ++k) 
+            ans.push_back({sessions[0][j], sessions[0][k]});
+    for(int y = 1; y < k; ++y)
+    {
+        vpi::iterator it = ans.begin();
+        while(it != ans.end())
+        {
+            int ind1 = get_index(it->first, sessions[y]);
+            int ind2 = get_index(it->second, sessions[y]);
+            if (ind2 < ind1)
+                ans.erase(it);
+            else
+                ++it;
+        }
+    }
+    cout << ans.size() << nl;
 }
 int main(void)
 {
-    setIO("diamond");
+    setIO("gymnastics");
     int t;
+    // read(t);
     t = 1;
     while (t--)
         solve();

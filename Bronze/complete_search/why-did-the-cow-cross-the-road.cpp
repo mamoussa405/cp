@@ -65,30 +65,56 @@ void setIO(string name = "")
     }
 }
 
+int first_index(char c, string& s)
+{
+    for(int i = 0; i < s.size(); ++i)
+        if (s[i] == c)
+            return i;
+    return 0;
+}
+
+bool is_crossed(string& s, char c)
+{
+    for(int i = 0; i < s.size(); ++i)
+        if (s[i] == c)
+            return true;
+    return false;
+}
+
 void solve(void)
 {
-  int n,k;
-  cin >> n >> k;
-  vi d(n);
-  for(auto& x:d)
-    cin >> x;
-  int ans{0};
-  for(int i = 0; i < d.size(); ++i)
-  {
-	  int tmp{0};
-    for(int j = 0; j < d.size() ; ++j)
+    string s;
+    cin >> s;
+    string cow = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    map<char, string> already_crossed;
+    set<char> might_cross;
+    int64 ans{0};
+    for(int i = 0; i < 26; ++i)
     {
-	    if (d[j] >= d[i] && d[j] - d[i] <= k)
-		    ++tmp;
+        int index = first_index(cow[i], s);
+        for(int j = ++index; j < 52; ++j)
+        {
+            if (s[j] == cow[i])
+                break;
+            if (is_crossed(already_crossed[cow[i]], s[j]))
+                continue;
+            if (might_cross.count(s[j]))
+                might_cross.erase(s[j]);
+            else
+                might_cross.insert(s[j]);
+        }
+        for(set<char>::iterator it = might_cross.begin(); it != might_cross.end(); ++it)
+            already_crossed[*it] += cow[i];
+        ans += might_cross.size();
+        might_cross.clear();
     }
-    ans = max(ans, tmp);
-  }  
-  cout << ans << nl;
+    cout << ans << nl;
 }
 int main(void)
 {
-    setIO("diamond");
+    setIO("circlecross");
     int t;
+    // read(t);
     t = 1;
     while (t--)
         solve();

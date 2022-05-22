@@ -65,30 +65,56 @@ void setIO(string name = "")
     }
 }
 
+double area(pii p1, pii p2, pii p3)
+{
+    return abs((p1.first*(p2.second - p3.second))
+                + p2.first*(p3.second - p1.second)
+                + p3.first*(p1.second - p2.second) ) / 2.0;
+}
+
+bool is_valid(pii p1, pii p2, pii p3)
+{
+    bool found_x{false};
+    bool found_y{false};
+    if (p1.first == p2.first || p1.first == p3.first || p2.first == p3.first)
+        found_x = true;
+    if (p1.second == p2.second || p1.second == p3.second || p2.second == p3.second)
+        found_y = true;
+    return found_x && found_y;
+}
 void solve(void)
 {
-  int n,k;
-  cin >> n >> k;
-  vi d(n);
-  for(auto& x:d)
-    cin >> x;
-  int ans{0};
-  for(int i = 0; i < d.size(); ++i)
-  {
-	  int tmp{0};
-    for(int j = 0; j < d.size() ; ++j)
+    int n;
+    cin >> n;
+    vpi fence_posts(n);
+    for(auto& x:fence_posts)
+        cin >> x.first >> x.second;
+    double ans{0.0};
+    for(int i = 0; i < n; ++i)
     {
-	    if (d[j] >= d[i] && d[j] - d[i] <= k)
-		    ++tmp;
+        for(int j = i + 1; j < n; ++j)
+        {
+            for(int k = j + 1; k < n; ++k)
+            {
+                if (is_valid(fence_posts[i], fence_posts[j], fence_posts[k]))
+                {
+                    // cerr << "(" << fence_posts[i].first << "," << fence_posts[i].second
+                    // << "),(" << fence_posts[j].first << "," << fence_posts[j].second
+                    // << "),(" << fence_posts[k].first << "," << fence_posts[k].second << ")" << nl;
+                    double res = area(fence_posts[i], fence_posts[j], fence_posts[k]);
+                    ans = max(ans, res);
+                }
+            }
+        }
     }
-    ans = max(ans, tmp);
-  }  
-  cout << ans << nl;
+    // printf("%lf\n", ans*2);
+    cout << fixed << (int64)ceil(ans*2) << nl;
 }
 int main(void)
 {
-    setIO("diamond");
+    setIO("triangles");
     int t;
+    // read(t);
     t = 1;
     while (t--)
         solve();

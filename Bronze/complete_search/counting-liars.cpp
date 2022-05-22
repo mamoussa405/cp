@@ -67,29 +67,39 @@ void setIO(string name = "")
 
 void solve(void)
 {
-  int n,k;
-  cin >> n >> k;
-  vi d(n);
-  for(auto& x:d)
-    cin >> x;
-  int ans{0};
-  for(int i = 0; i < d.size(); ++i)
-  {
-	  int tmp{0};
-    for(int j = 0; j < d.size() ; ++j)
-    {
-	    if (d[j] >= d[i] && d[j] - d[i] <= k)
-		    ++tmp;
-    }
-    ans = max(ans, tmp);
-  }  
-  cout << ans << nl;
+	ofstream out("logs");
+	int n;
+	cin >> n;
+	int tmp = n;
+	vector<pair<char, int> > pr;
+	while (tmp--)
+	{
+		char c;
+		int num;
+		cin >> c >> num;
+		pr.push_back({c,num});
+	}
+	int ans{imax};
+	for(int h = 0; h < n; ++h)
+	{
+		int lying{0};
+		for(int j = 0 ; j < n; ++j)
+		{
+			if (pr[j].first == 'G' && pr[j].second > pr[h].second)
+				++lying;
+			else if (pr[j].first == 'L' && pr[j].second < pr[h].second)
+				++lying;
+		}
+		ans = min(ans, lying);
+	}
+	cout << ans << nl;
 }
 int main(void)
 {
-    setIO("diamond");
+	setIO("");
     int t;
     t = 1;
+    //read(t);
     while (t--)
         solve();
     return 0;
