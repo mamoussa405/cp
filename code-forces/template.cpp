@@ -194,7 +194,11 @@ ostream& operator<<(ostream& out, vpss& v)
     cout << " ]\n";
     return out;
 }
-
+/*--------------------------- extraction operator overloads -------------------*/
+void operator>>(istream& in, vi& v) { for(auto& x:v) in >> x; }
+void operator>>(istream& in, vc& v) { for(auto& x:v) in >> x; }
+void operator>>(istream& in, vs& v) { for(auto& x:v) in >> x; }
+/*---------------------------------------------------------------------------*/
 ull bexp(ull x, ull n)
 {
     ull  res = 1;
@@ -228,7 +232,10 @@ int main(void)
 {
     int t = 0;
     // read(t);
-    vpss v(10,pss({"hello","world"}));
+    int n;
+    cin >> n;
+    vs v(n);
+    cin >> v;
     cout << v;
     while (t--)
         solve();
