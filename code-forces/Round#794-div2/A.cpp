@@ -226,12 +226,26 @@ void setIO(string name = "")
 
 void solve(void)
 {
-
+    int n;
+    cin >> n;
+    vi v(n);
+    cin >> v;
+    ll sum = accumulate(all(v), 0);
+    double res = sum / (float)n;
+    for(int i = 0; i < n; ++i)
+    {
+        if (res == v[i])
+        {
+            cout << "YES" << nl;
+            return;
+        }
+    }
+    cout << "NO" << nl;
 }
 int main(void)
 {
     int t = 0;
-    read(t);
+    cin >> t;
     while (t--)
         solve();
     return 0;

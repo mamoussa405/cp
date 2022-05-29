@@ -226,12 +226,28 @@ void setIO(string name = "")
 
 void solve(void)
 {
-
+    int n;
+    cin >> n;
+    vi v(n);
+    cin >> v;
+    ll ans{0};
+    int i = 0;
+    while (i < n - 1)
+    {
+        if (v[i] > v[i + 1])
+        {
+            ++ans;
+            i += 2;
+        }
+        else
+            ++i;
+    }
+    cout << ans << nl;
 }
 int main(void)
 {
     int t = 0;
-    read(t);
+    cin >> t;
     while (t--)
         solve();
     return 0;

@@ -7,6 +7,7 @@ using namespace std;
 #define nl "\n"
 #define mp make_pair
 #define pb push_back
+#define pop pop_back
 #define lb lower_bound
 #define ub upper_bound
 #define er equal_range
@@ -224,14 +225,52 @@ void setIO(string name = "")
     }
 }
 
+/**
+ * @brief this function generates all the subsets of a set using
+ * backtracking
+ * @param apples the set from which we will generate the subsets
+ * @param subset the temp set in which we will store the subsets
+ * @param cur_index the index in which we will backtrack and generate
+ * all possible subsets
+ * 
+ */
+ll ans = 3e10;
+void generate_subsets(vi& apples, si& subset, int cur_index)
+{
+    if (subset.SZ)
+    {
+        ll sum{0};
+        for(int i = 0; i < apples.SZ; ++i)
+            if (!subset.count(i))
+                sum += apples[i];
+        ll sub_sum{0};
+
+        iter(it, subset)
+            sub_sum += apples[*it];
+        ans = min(ans, abs(sum - sub_sum));
+    }
+    for(int i = cur_index; i < apples.SZ; ++i)
+    {
+        subset.insert(i);
+        generate_subsets(apples, subset, i + 1);
+        subset.erase(i);
+    }
+}
+
 void solve(void)
 {
-
+    int n;
+    cin >> n;
+    vi apples(n);
+    si subset;
+    cin >> apples;
+    generate_subsets(apples, subset, 0);
+    cout << ans << nl;
 }
 int main(void)
 {
-    int t = 0;
-    read(t);
+    int t = 1;
+    // cin >> t;
     while (t--)
         solve();
     return 0;

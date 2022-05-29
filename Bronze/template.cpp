@@ -10,7 +10,7 @@ using namespace std;
 #define lb lower_bound
 #define ub upper_bound
 #define er equal_range
-#define SZ size()
+#define sz(x) (int)(x.size())
 #define L length()
 #define F first
 #define S second
@@ -194,7 +194,11 @@ ostream& operator<<(ostream& out, vpss& v)
     cout << " ]\n";
     return out;
 }
-
+/*--------------------------- extraction operator overloads -------------------*/
+void operator>>(istream& in, vi& v) { for(auto& x:v) in >> x; }
+void operator>>(istream& in, vc& v) { for(auto& x:v) in >> x; }
+void operator>>(istream& in, vs& v) { for(auto& x:v) in >> x; }
+/*---------------------------------------------------------------------------*/
 ull bexp(ull x, ull n)
 {
     ull  res = 1;
@@ -206,6 +210,14 @@ ull bexp(ull x, ull n)
         n >>= 1;
     }
     return res; 
+}
+
+vi brep(ll n)
+{
+	vi res;
+	for(int i = 63; i >= 0; --i)
+		(n&(1<<i)) ? res.pb(1) : res.pb(0);
+	return res;
 }
 
 void setIO(string name = "")
@@ -226,10 +238,8 @@ void solve(void)
 }
 int main(void)
 {
-    int t = 0;
-    // read(t);
-    vpss v(10,pss({"hello","world"}));
-    cout << v;
+    int t = 1;
+    cin >> t;
     while (t--)
         solve();
     return 0;

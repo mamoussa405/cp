@@ -194,11 +194,7 @@ ostream& operator<<(ostream& out, vpss& v)
     cout << " ]\n";
     return out;
 }
-/*--------------------------- extraction operator overloads -------------------*/
-void operator>>(istream& in, vi& v) { for(auto& x:v) in >> x; }
-void operator>>(istream& in, vc& v) { for(auto& x:v) in >> x; }
-void operator>>(istream& in, vs& v) { for(auto& x:v) in >> x; }
-/*---------------------------------------------------------------------------*/
+
 ull bexp(ull x, ull n)
 {
     ull  res = 1;
@@ -226,12 +222,37 @@ void setIO(string name = "")
 
 void solve(void)
 {
-
+    int n;
+    int alice_max{0};
+    int bob_max{0};
+    cin >> n;
+    vi alice(n);
+    for(auto& x:alice)
+    {
+        cin >> x;
+        alice_max = max(alice_max, x);
+    }
+    int m;
+    cin >> m;
+    vi bob(m);
+    for(auto& x:bob)
+    {
+        cin >> x;
+        bob_max = max(bob_max, x);
+    }
+    if (alice_max >= bob_max)
+        cout << "Alice" << nl;
+    else
+        cout << "Bob" << nl;
+    if (bob_max >= alice_max)
+        cout << "Bob" << nl;
+    else
+        cout << "Alice" << nl;
 }
 int main(void)
 {
     int t = 0;
-    read(t);
+    cin >> t;
     while (t--)
         solve();
     return 0;

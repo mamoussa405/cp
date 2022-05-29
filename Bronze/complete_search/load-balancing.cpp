@@ -224,14 +224,106 @@ void setIO(string name = "")
     }
 }
 
+int get_r1_num(int x, int y, vpii& coordinates)
+{
+    int ans{0};
+    for(auto& c:coordinates)
+        if (c.F < x && c.S < y)
+            ++ans;
+    return ans;
+}
+int get_r2_num(int x, int y, vpii& coordinates)
+{
+    int ans{0};
+    for(auto& c:coordinates)
+        if (c.F < x && c.S > y)
+            ++ans;
+    return ans;
+}
+int get_r3_num(int x, int y, vpii& coordinates)
+{
+    int ans{0};
+    for(auto& c:coordinates)
+        if (c.F > x && c.S > y)
+            ++ans;
+    return ans;
+}
+int get_r4_num(int x, int y, vpii& coordinates)
+{
+    int ans{0};
+    for(auto& c:coordinates)
+        if (c.F > x && c.S < y)
+            ++ans;
+    return ans;
+}
+
+int get_up(int y, vpii& coordinates)
+{
+    int ans{0};
+    for(auto& c:coordinates)
+        if (c.S > y)
+            ++ans;
+    return ans;
+}
+
+int get_down(int y, vpii& coordinates)
+{
+    int ans{0};
+    for(auto& c:coordinates)
+        if(c.S < y)
+            ++ans;
+    return ans;
+}
+
+int get_right(int x, vpii& coordinates)
+{
+    int ans{0};
+    for(auto& c:coordinates)
+        if (c.F < x)
+            ++ans;
+    return ans;
+}
+
+int get_left(int x, vpii& coordinates)
+{
+    int ans{0};
+    for(auto& c:coordinates)
+        if (c.F > x)
+            ++ans;
+    return ans;
+}
+
 void solve(void)
 {
-
+    int n,b;
+    int ans = imax;
+    cin >> n >> b;
+    vpii coordinates(n);
+    for(auto& x:coordinates)
+        cin >> x.F >> x.S;
+    for(int i = 0; i < n; ++i)
+    {
+        for(int j = 0; j < n; ++j)
+        {
+            int max_r;
+            int r1 = get_r1_num(coordinates[i].F + 1, coordinates[j].S + 1, coordinates);
+            max_r = max(max_r, r1);
+            int r2 = get_r2_num(coordinates[i].F + 1, coordinates[j].S + 1, coordinates);
+            max_r = max(max_r, r2);
+            int r3 = get_r3_num(coordinates[i].F + 1, coordinates[j].S + 1, coordinates);
+            max_r = max(max_r, r3);
+            int r4 = get_r4_num(coordinates[i].F + 1, coordinates[j].S + 1, coordinates);
+            max_r = max(max_r, r4);
+            ans = min(ans, max_r);
+        }
+    }
+    cout << ans << nl;
 }
 int main(void)
 {
-    int t = 0;
-    read(t);
+    setIO("balancing");
+    int t = 1;
+    // read(t);
     while (t--)
         solve();
     return 0;

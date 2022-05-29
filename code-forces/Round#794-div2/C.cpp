@@ -226,12 +226,58 @@ void setIO(string name = "")
 
 void solve(void)
 {
-
+    int n;
+    cin >> n;
+    vi v(n);
+    cin >> v;
+    if (n%2)
+    {
+        cout << "NO" << nl;
+        return;
+    }
+    vi _min,_max;
+    sort(v.begin(), v.end());
+    int a = v[0];
+    int count{1};
+    for(int i = 1; i < n; ++i)
+    {
+        if (v[i] == a)
+            count++;
+        else
+        {
+            if (count > n / 2)
+            {
+                cout << "NO" << nl;
+                return;
+            }
+            count = 1;
+            a = v[i];
+        }
+    }
+    if (count > n / 2)
+    {
+        cout << "NO" << nl;
+        return;
+    }
+    int i;
+    for(i = 0; _min.SZ < n / 2; ++i)
+        _min.push_back(v[i]);
+    for(; _max.SZ < n / 2 && i < n; ++i)
+        _max.push_back(v[i]);
+    if (_min.SZ == _max.SZ)
+    {
+        cout << "YES" << nl;
+        for(int i = 0; i < _min.SZ; ++i)
+            cout << _min[i] << " " << _max[i] << " ";
+        cout << nl;
+    }
+    else
+        cout << "NO" << nl;
 }
 int main(void)
 {
     int t = 0;
-    read(t);
+    cin >> t;
     while (t--)
         solve();
     return 0;
