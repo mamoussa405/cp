@@ -194,7 +194,11 @@ ostream& operator<<(ostream& out, vpss& v)
     cout << " ]\n";
     return out;
 }
-
+/*--------------------------- extraction operator overloads -------------------*/
+void operator>>(istream& in, vi& v) { for(auto& x:v) in >> x; }
+void operator>>(istream& in, vc& v) { for(auto& x:v) in >> x; }
+void operator>>(istream& in, vs& v) { for(auto& x:v) in >> x; }
+/*---------------------------------------------------------------------------*/
 ull bexp(ull x, ull n)
 {
     ull  res = 1;
@@ -220,57 +224,52 @@ void setIO(string name = "")
     }
 }
 
-void fill_first(vi& steps, int n, int a)
-{
-    int sum{0};
-    while (true)
-    {
-        if (sum + a <= n)
-        {
-            steps.push_back(a);
-            sum += a;
-            continue;
-        }
-        if (sum >= n)
-            break;
-        if (sum + (a - 1) <= n)
-        {
-            steps.push_back(a - 1);
-            sum += (a - 1);
-            continue;
-        }
-        if (sum >= n)
-            break;
-        if (sum + (a - 2) <= n) 
-        {
-            steps.push_back(a - 2);
-            sum += (a - 2);
-        }
-    }
-}
-
 void solve(void)
 {
     int n;
     cin >> n;
-    vi steps;
-    int first{3};
-    ll ans{1};
-    while (first > 1)
+    int h1{0};
+    int h2{0};
+    int h3{0};
+    while (n)
     {
-        fill_first(steps, n, first);
-        for(ll i = steps.size() - 1; i > 0; --i)
-            ans += steps[i] - 1;
-        steps.clear();
-        --first;
-        ans += 1;
+        if (n)
+        {
+            h1 += 1;
+            n -= 1;
+        }
+        if (n)
+        {
+            h2 += 1;
+            n -= 1;
+        }
+        if (n)
+        {
+            h3 += 1;
+            n -= 1;
+        }
     }
-    cout << ans << nl;
+    while (h1 <= h2 || h2 <= h3)
+    {
+        if (h1 <= h2)
+        {
+            h1 += 1;
+            h2 -= 1;
+        }
+        if (h2 <= h3)
+        {
+            h2 += 1;
+            h3 -= 1;
+        }
+    }
+    
+    cout << h2 << " " << h1 << " " << h3 << nl;
 }
+
 int main(void)
 {
-    int t = 1;
-    // cin >> t;
+    int t = 0;
+    cin >> t;
     while (t--)
         solve();
     return 0;

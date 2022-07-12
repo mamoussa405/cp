@@ -194,7 +194,11 @@ ostream& operator<<(ostream& out, vpss& v)
     cout << " ]\n";
     return out;
 }
-
+/*--------------------------- extraction operator overloads -------------------*/
+void operator>>(istream& in, vi& v) { for(auto& x:v) in >> x; }
+void operator>>(istream& in, vc& v) { for(auto& x:v) in >> x; }
+void operator>>(istream& in, vs& v) { for(auto& x:v) in >> x; }
+/*---------------------------------------------------------------------------*/
 ull bexp(ull x, ull n)
 {
     ull  res = 1;
@@ -220,57 +224,46 @@ void setIO(string name = "")
     }
 }
 
-void fill_first(vi& steps, int n, int a)
-{
-    int sum{0};
-    while (true)
-    {
-        if (sum + a <= n)
-        {
-            steps.push_back(a);
-            sum += a;
-            continue;
-        }
-        if (sum >= n)
-            break;
-        if (sum + (a - 1) <= n)
-        {
-            steps.push_back(a - 1);
-            sum += (a - 1);
-            continue;
-        }
-        if (sum >= n)
-            break;
-        if (sum + (a - 2) <= n) 
-        {
-            steps.push_back(a - 2);
-            sum += (a - 2);
-        }
-    }
-}
-
 void solve(void)
 {
-    int n;
+    int n; 
     cin >> n;
-    vi steps;
-    int first{3};
-    ll ans{1};
-    while (first > 1)
+    vi a(n), b(n);
+    cin >> a;
+    cin >> b;
+    int dis{-1}, dis_to_zero{0};
+    for(int i = 0 ; i < n; ++i)
     {
-        fill_first(steps, n, first);
-        for(ll i = steps.size() - 1; i > 0; --i)
-            ans += steps[i] - 1;
-        steps.clear();
-        --first;
-        ans += 1;
+        if (b[i] > a[i])
+        {
+            cout << "NO" << nl;
+            return;
+        }
+        if (b[i] == 0)
+        {
+            dis_to_zero = max(dis_to_zero, a[i]);
+            continue;
+        }
+        if (dis == -1)
+            dis = a[i] - b[i];
+        else
+        {
+            if (dis != (a[i] - b[i]))
+            {
+                cout << "NO" << nl;
+                return;
+            }
+        }
     }
-    cout << ans << nl;
+    if (dis_to_zero > dis && dis != -1)
+        cout << "NO" << nl;
+    else
+        cout << "YES" << nl;
 }
 int main(void)
 {
-    int t = 1;
-    // cin >> t;
+    int t = 0;
+    cin >> t;
     while (t--)
         solve();
     return 0;

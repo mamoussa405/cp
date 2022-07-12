@@ -10,7 +10,7 @@ using namespace std;
 #define lb lower_bound
 #define ub upper_bound
 #define er equal_range
-#define SZ size()
+#define sz(x) (int)(x.size())
 #define L length()
 #define F first
 #define S second
@@ -55,9 +55,9 @@ typedef unsigned long long ull;
 ostream& operator<<(ostream& out, vi& v)
 { 
     cout << '['; 
-    for(int i = 0; i < v.SZ; ++i) 
+    for(int i = 0; i < sz(v); ++i) 
     {
-        if (i != v.SZ - 1)
+        if (i != sz(v) - 1)
             cout << v[i] << ", ";
         else
             cout << v[i];
@@ -68,9 +68,9 @@ ostream& operator<<(ostream& out, vi& v)
 ostream& operator<<(ostream& out, vc& v)
 { 
     cout << '['; 
-    for(int i = 0; i < v.SZ; ++i) 
+    for(int i = 0; i < sz(v); ++i) 
     {
-        if (i != v.SZ - 1)
+        if (i != sz(v) - 1)
             cout << v[i] << ", ";
         else
             cout << v[i];
@@ -81,9 +81,9 @@ ostream& operator<<(ostream& out, vc& v)
 ostream& operator<<(ostream& out, vs& v)
 { 
     cout << '['; 
-    for(int i = 0; i < v.SZ; ++i) 
+    for(int i = 0; i < sz(v); ++i) 
     {
-        if (i != v.SZ - 1)
+        if (i != sz(v) - 1)
             cout << v[i] << ", ";
         else
             cout << v[i];
@@ -93,13 +93,13 @@ ostream& operator<<(ostream& out, vs& v)
 }
 ostream& operator<<(ostream& out, vvi& v)
 { 
-    for(int i = 0; i < v.SZ; ++i) 
+    for(int i = 0; i < sz(v); ++i) 
     {
         cout << i << "-->";
         cout << '[';
-        for(int j = 0; j < v[i].SZ; ++j)
+        for(int j = 0; j < sz(v[i]); ++j)
         {
-            if (j != v[i].SZ - 1)
+            if (j != sz(v[i]) - 1)
                 cout << v[i][j] << " ";
             else
                 cout << v[i][j];
@@ -110,13 +110,13 @@ ostream& operator<<(ostream& out, vvi& v)
 }
 ostream& operator<<(ostream& out, vvc& v)
 { 
-    for(int i = 0; i < v.SZ; ++i) 
+    for(int i = 0; i < sz(v); ++i) 
     {
         cout << i << "-->";
         cout << '[';
-        for(int j = 0; j < v[i].SZ; ++j)
+        for(int j = 0; j < sz(v[i]); ++j)
         {
-            if (j != v[i].SZ - 1)
+            if (j != sz(v[i]) - 1)
                 cout << v[i][j] << " ";
             else
                 cout << v[i][j];
@@ -127,13 +127,13 @@ ostream& operator<<(ostream& out, vvc& v)
 }
 ostream& operator<<(ostream& out, vvs& v)
 { 
-    for(int i = 0; i < v.SZ; ++i) 
+    for(int i = 0; i < sz(v); ++i) 
     {
         cout << i << "-->";
         cout << '[';
-        for(int j = 0; j < v[i].SZ; ++j)
+        for(int j = 0; j < sz(v[i]); ++j)
         {
-            if (j != v[i].SZ - 1)
+            if (j != sz(v[i]) - 1)
                 cout << v[i][j] << " ";
             else
                 cout << v[i][j];
@@ -145,9 +145,9 @@ ostream& operator<<(ostream& out, vvs& v)
 ostream& operator<<(ostream& out, vpii& v)
 { 
     cout << "[ ";
-    for(int i = 0; i < v.SZ; ++i)
+    for(int i = 0; i < sz(v); ++i)
     {
-        if (i != v.SZ - 1)
+        if (i != sz(v) - 1)
             cout << '{' << v[i].F << ", " << v[i].S << '}' << ", ";
         else
             cout << '{' << v[i].F << ", " << v[i].S << '}';
@@ -158,9 +158,9 @@ ostream& operator<<(ostream& out, vpii& v)
 ostream& operator<<(ostream& out, vpic& v)
 { 
     cout << "[ ";
-    for(int i = 0; i < v.SZ; ++i)
+    for(int i = 0; i < sz(v); ++i)
     {
-        if (i != v.SZ - 1)
+        if (i != sz(v) - 1)
             cout << '{' << v[i].F << ", " << v[i].S << '}' << ", ";
         else
             cout << '{' << v[i].F << ", " << v[i].S << '}';
@@ -171,9 +171,9 @@ ostream& operator<<(ostream& out, vpic& v)
 ostream& operator<<(ostream& out, vpci& v)
 { 
     cout << "[ ";
-    for(int i = 0; i < v.SZ; ++i)
+    for(int i = 0; i < sz(v); ++i)
     {
-        if (i != v.SZ - 1)
+        if (i != sz(v) - 1)
             cout << '{' << v[i].F << ", " << v[i].S << '}' << ", ";
         else
             cout << '{' << v[i].F << ", " << v[i].S << '}';
@@ -184,9 +184,9 @@ ostream& operator<<(ostream& out, vpci& v)
 ostream& operator<<(ostream& out, vpss& v)
 { 
     cout << "[ ";
-    for(int i = 0; i < v.SZ; ++i)
+    for(int i = 0; i < sz(v); ++i)
     {
-        if (i != v.SZ - 1)
+        if (i != sz(v) - 1)
             cout << '{' << v[i].F << ", " << v[i].S << '}' << ", ";
         else
             cout << '{' << v[i].F << ", " << v[i].S << '}';
@@ -194,7 +194,11 @@ ostream& operator<<(ostream& out, vpss& v)
     cout << " ]\n";
     return out;
 }
-
+/*--------------------------- extraction operator overloads -------------------*/
+void operator>>(istream& in, vi& v) { for(auto& x:v) in >> x; }
+void operator>>(istream& in, vc& v) { for(auto& x:v) in >> x; }
+void operator>>(istream& in, vs& v) { for(auto& x:v) in >> x; }
+/*---------------------------------------------------------------------------*/
 ull bexp(ull x, ull n)
 {
     ull  res = 1;
@@ -208,6 +212,14 @@ ull bexp(ull x, ull n)
     return res; 
 }
 
+vi brep(ll n)
+{
+	vi res;
+	for(int i = 63; i >= 0; --i)
+		(n&(1<<i)) ? res.pb(1) : res.pb(0);
+	return res;
+}
+
 void setIO(string name = "")
 {
     ios_base::sync_with_stdio(0);
@@ -219,56 +231,76 @@ void setIO(string name = "")
       FILE* cout = freopen(string(name + ".out").c_str(), "w", stdout);
     }
 }
-
-void fill_first(vi& steps, int n, int a)
+void fill_M(vvi& M,vi& w, int n)
 {
-    int sum{0};
-    while (true)
+    int _max{0};
+    for(int i = 0; i < n; ++i)
+        _max += (1<<i);
+    for(int i = 0; i <= _max; ++i)
     {
-        if (sum + a <= n)
+        for(int j = 0; j <= _max; ++j)
         {
-            steps.push_back(a);
-            sum += a;
-            continue;
+            int Xor = i ^ j;
+            int w_sum{0};
+            for(int k = 0, x = n - 1; k < n; ++k, --x)
+                if(!(Xor&(1<<k)))
+                    w_sum += w[x];
+            M[i][j] = w_sum;
         }
-        if (sum >= n)
-            break;
-        if (sum + (a - 1) <= n)
+    }
+}
+int get_dec(string& s)
+{
+    int res{0};
+    int n = sz(s);
+    for(int i = n - 1, k = 0; i >= 0; --i, ++k)
+        if (s[k] == '1')
+            res += (1<<i);
+    return res;
+}
+
+void fill_prefex(vvi& prefex, vvi& M)
+{
+    for(int i = 0; i < sz(M[0]) - 1; ++i)
+    {
+        for(int j = 0; j < sz(M); ++j)
         {
-            steps.push_back(a - 1);
-            sum += (a - 1);
-            continue;
+            if (M[j][i] <= 100)
+                prefex[i][M[j][i]] += M[j].back();
         }
-        if (sum >= n)
-            break;
-        if (sum + (a - 2) <= n) 
-        {
-            steps.push_back(a - 2);
-            sum += (a - 2);
-        }
+        for(int k = 1; k < sz(prefex[i]); ++k)
+            prefex[i][k] += prefex[i][k - 1];
     }
 }
 
 void solve(void)
 {
-    int n;
-    cin >> n;
-    vi steps;
-    int first{3};
-    ll ans{1};
-    while (first > 1)
+    int n,m,q;
+    cin >> n >> m >> q;  
+    vi w(n);
+    vs MS(m);
+    cin >> w;
+    cin >> MS;
+    vvi M((1<<n), vi((1<<n) + 1));
+    vvi prefex((1<<n), vi(100 + 1));
+    fill_M(M, w, n);
+    for(int i = 0; i < m; ++i)
+        ++M[get_dec(MS[i])].back();
+    fill_prefex(prefex, M);
+    // cout << prefex;
+    string t;
+    int k;
+    while (q--) // TLE here
     {
-        fill_first(steps, n, first);
-        for(ll i = steps.size() - 1; i > 0; --i)
-            ans += steps[i] - 1;
-        steps.clear();
-        --first;
-        ans += 1;
+        int ans{0};
+        cin >> t >> k;
+        int dec = get_dec(t);
+        cout << prefex[dec][k] << nl;
     }
-    cout << ans << nl;
 }
 int main(void)
 {
+    setIO("");
     int t = 1;
     // cin >> t;
     while (t--)
