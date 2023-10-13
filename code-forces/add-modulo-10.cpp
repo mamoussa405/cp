@@ -234,7 +234,47 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+    int n;
+
+    cin >> n;
+    vi  v(n);
+    for (int i=0; i<n; i++) cin >> v[i];
+    bool    find_10 = false;
+    for (int i=0; i<n; i++)
+    {
+        v[i] += (v[i] % 10);
+        if (!(v[i] % 10))
+            find_10 = true;
+    }
+    if (find_10)
+    {
+         int a = v[0];
+        for (int i=0; i<n; i++)
+        {
+            if (a != v[i])
+            {
+                cout << "No" << nl;
+                return ;
+            }
+        }
+        cout << "YES" << nl;
+        return;
+    }
+    for (int i=0; i<n; i++)
+    {
+        while (v[i] % 10 != 6)
+            v[i] += (v[i] % 10);
+    }
+    int a = (v[0] / 10) % 2;
+    for (int i=0; i<n; i++)
+    {
+        if (a != (v[i] / 10) % 2)
+        {
+            cout << "No" << nl;
+            return ;
+        }
+    }
+    cout << "Yes" << nl;
 }
 int main(void)
 {

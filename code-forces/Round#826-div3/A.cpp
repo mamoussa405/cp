@@ -234,13 +234,47 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   string s;
+   getline(cin, s); 
+   string a,b;
+   stringstream ss(s);
+   ss >> a;
+   ss >> b;
+   char a_size = a.back();
+   char b_size = b.back();
+   if (a_size != b_size) {
+        if (a_size == 'M') {
+            if (b_size == 'S') cout << '>' << nl;
+            else cout << '<' << nl;
+        } else if (a_size == 'L') {
+            cout << '>' << nl;
+        } else {
+            cout << '<' << nl;
+        }
+   } else {
+        int ax_num{0};
+        int bx_num{0};
+        for(char& c:a) if (c == 'X') ++ax_num;
+        for(char& c:b) if (c == 'X') ++bx_num;
+        if (ax_num == bx_num) cout << '=' << nl;
+        else {
+            if (a_size == 'S') {
+                if (ax_num > bx_num) cout << '<' << nl;
+                else cout << '>' << nl;
+            }
+            else {
+                if (ax_num < bx_num) cout << '<' << nl;
+                else cout << '>' << nl;
+            }
+        }
+   }
 }
 int main(void)
 {
     setIO("");
     int t = 1;
     cin >> t;
+    cin.ignore();
     while (t--)
         solve();
     return 0;

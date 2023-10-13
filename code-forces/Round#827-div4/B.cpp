@@ -234,7 +234,14 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int n;
+   cin >> n;
+   vi v(n);
+   cin >> v; 
+   set<int> s;
+   for(int& num:v) s.insert(num);
+   if (s.size() == v.size()) cout << "YES\n";
+   else cout << "NO\n";
 }
 int main(void)
 {

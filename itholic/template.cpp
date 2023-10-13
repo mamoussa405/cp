@@ -234,7 +234,7 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+  
 }
 int main(void)
 {

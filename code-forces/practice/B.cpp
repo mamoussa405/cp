@@ -234,7 +234,49 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+    int n,q;
+    cin >> n >> q;    
+    ll odd_sum{0};
+    ll even_sum{0};
+    ll even_count{0};
+    ll odd_count{0};
+    while (n--) {
+        ll num;
+        cin >> num;
+        if (num%2) {
+            odd_sum += num;
+            ++odd_count;
+        }
+        else {
+            even_sum += num;
+            ++even_count;
+        } 
+    }
+    while (q--) {
+        ll type,x;
+        cin >> type >> x;
+        if (type == 0) { 
+            if (x%2) {
+                odd_count += even_count;
+                odd_sum += ((even_sum) + (x * even_count));
+                even_sum = 0;
+                even_count = 0;
+            } else {
+                even_sum += (x * even_count);
+            }
+        }
+        else {
+            if (x%2) {
+                even_count += odd_count;
+                even_sum += ((odd_sum) + (x * odd_count));
+                odd_count = 0;
+                odd_sum = 0;
+            } else {
+                odd_sum += (x * odd_count);
+            }
+        } 
+        cout << even_sum + odd_sum << nl;
+    }
 }
 int main(void)
 {

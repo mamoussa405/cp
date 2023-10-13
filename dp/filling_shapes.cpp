@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+// #include "std++.h"
 using namespace std;
 #define all(cont) cont.begin(), cont.end()
 #define rall(cont) cont.end(), cont.begin()
@@ -232,15 +233,23 @@ void setIO(string name = "")
     }
 }
 
+int ans(int n)
+{
+    if (n == 2) return 2;
+    return ans(n - 2) * 2;
+}
 void solve(void)
 {
-    
+    int n;
+    cin >> n;
+
+    if (n&1) cout << 0 << '\n';
+    else cout << ans(n) << '\n';
 }
 int main(void)
 {
-    setIO("");
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
         solve();
     return 0;

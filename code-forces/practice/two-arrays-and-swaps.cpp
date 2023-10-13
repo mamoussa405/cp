@@ -234,7 +234,21 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int n,k;
+   cin >> n >> k;
+   vi a(n), b(n);
+   cin >> a;
+   cin >> b; 
+   sort(a.begin(), a.end());
+   sort(b.rbegin(), b.rend());
+   int ans{0};
+   for (int i = 0; i < n; ++i) {
+    if (a[i] < b[i] && k) {
+        --k;
+        ans += b[i];
+    } else ans += a[i];
+   }
+   cout << ans << nl;
 }
 int main(void)
 {

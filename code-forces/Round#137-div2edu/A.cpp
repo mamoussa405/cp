@@ -234,7 +234,13 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int n;
+   cin >> n;
+   vi v(n);
+   cin >> v;
+   int nn = 10 - (n + 1);
+   nn = (nn * (nn + 1)) / 2;
+   cout << nn * 6 << nl;
 }
 int main(void)
 {

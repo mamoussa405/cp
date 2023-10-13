@@ -234,7 +234,45 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+    int n;
+    cin >> n;
+    vi v(n);
+    cin >> v;    
+    int ans{0};
+    for (int i = 0; i < n; ++i) {
+        if (i%2 && !(v[i]%2)){
+            // odd index, even value
+            bool possible{false};
+            for (int j = i + 1; j < n; ++j) {
+                if (!(j%2) && v[j]%2) {
+                    possible = true;
+                    swap(v[i], v[j]);
+                    ++ans;
+                    break;
+                }
+            }
+            if (!possible) {
+                ans = -1;
+                break;
+            }
+        } else if (!(i%2) && v[i]%2) {
+            // even index, odd value
+            bool possible{false};
+            for (int j = i + 1; j < n; ++j) {
+                if (j%2 && !(v[j]%2)) {
+                    possible = true; 
+                    swap(v[i], v[j]);
+                    ++ans;
+                    break;
+                }
+            }
+            if (!possible) {
+                ans = -1;
+                break;
+            }
+        }
+    }
+    cout << ans << nl;
 }
 int main(void)
 {

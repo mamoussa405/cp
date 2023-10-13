@@ -234,7 +234,12 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int n;
+   cin >> n;
+   string s;
+   cin >> s;
+   sort(s.rbegin(), s.rend());
+   cout << s[0] - 'a' + 1 << nl;
 }
 int main(void)
 {

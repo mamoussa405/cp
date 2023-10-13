@@ -231,16 +231,62 @@ void setIO(string name = "")
       FILE* cout = freopen(string(name + ".out").c_str(), "w", stdout);
     }
 }
-
+bool is_prime(int n) {
+    for (int i = 2; i <= sqrt(n); ++i) {
+        if (!(n%i)) return false;
+    }
+    return true;
+}
+vi get_valid_primes(int n) {
+    vi ans;
+    for (int i = 2; i <= sqrt(n); ++i) {
+        if (is_prime(i)) ans.push_back(i);
+    }
+    return ans;
+}
+vi factorization(int n) {
+    vi valid_primes = get_valid_primes(n);
+    vi ans;
+    for (int& prime:valid_primes) {
+        if (prime*prime > n) {
+            if (n > 1) {
+                ans.push_back(n);
+                n = 1;
+            }
+        } else {
+            while (n%prime == 0) {
+                ans.push_back(prime);
+                n /= prime;
+            }
+        }
+    }
+    return ans;
+}
+int get_number_of_coprimes(int n) {
+    if (is_prime(n)) return n-1;
+    vi prime_fac = factorization(n);
+    int cur = prime_fac[0];
+    float ans{1.0};
+    for (int i = 1; i < prime_fac.size(); ++i) {
+       if (cur != prime_fac[i]) {
+        ans *= (float)(1 - (1/(float)cur));
+        cur=prime_fac[i];
+       }
+    }
+    ans *= (float)(1 - (1/(float)cur));
+    return ceil(ans*n);
+}
 void solve(void)
 {
-    
+   int n;
+   cin >> n; 
+   cout << get_number_of_coprimes(n) << nl;
 }
 int main(void)
 {
     setIO("");
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
         solve();
     return 0;

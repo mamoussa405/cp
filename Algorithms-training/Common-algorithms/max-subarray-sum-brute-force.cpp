@@ -234,13 +234,24 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int n,k;
+   cin >> n >> k;
+   vi array(n);
+   cin >> array; 
+   int curSum, ans{0};
+   for(int i = 0; i <= array.size() - k; ++i) {
+       curSum = 0; 
+       for(int j = i; j < i + k; ++j) curSum += array[j];
+       ans = max(ans, curSum);
+   }
+   cout << ans << nl;
 }
+
 int main(void)
 {
     setIO("");
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
         solve();
     return 0;

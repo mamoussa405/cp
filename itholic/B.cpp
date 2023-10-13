@@ -194,6 +194,7 @@ ostream& operator<<(ostream& out, vpss& v)
     cout << " ]\n";
     return out;
 }
+#define M_PI 3.14159265358979323846
 /*--------------------------- extraction operator overloads -------------------*/
 void operator>>(istream& in, vi& v) { for(auto& x:v) in >> x; }
 void operator>>(istream& in, vc& v) { for(auto& x:v) in >> x; }
@@ -234,14 +235,38 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
-}
+    int n;
+    cin >> n;
+    double angle = 180.0 - ((((double)n - 2.0) * 180.0) / (double)n);
+    double a = (angle) * M_PI / 180.0;
+    double step = cos(a) * 2.0;
+    double ans = step;
+    double move = angle;
+    if (n == 2 || n == 6)
+    {
+        if (n == 2)
+            printf ("%.9f\n", 0.0);
+        else
+            printf ("%.9f\n", 1.732050808);
+        return ;
+    }
+    while (angle + move < 90)
+    {
+        angle += move;
+        a = (angle) * M_PI / 180.0;
+        step = cos(a) * 2;
+        ans += step;
+    }
+    printf ("%.9f\n", ans + 1);
+}  
 int main(void)
 {
     setIO("");
     int t = 1;
-    cin >> t;
-    while (t--)
-        solve();
+    // cin >> t;
+    srand(time(NULL));
+    cout << rand() % 2 << endl;
+    // while (t--)
+    //     solve();
     return 0;
 }

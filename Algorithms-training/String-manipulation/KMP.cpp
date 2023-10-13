@@ -232,15 +232,60 @@ void setIO(string name = "")
     }
 }
 
+// ababcabcabababd
+// i = 0
+// ababd
+// j = 0 
+// 00010
+// j = lps[j-1] + 1;
 void solve(void)
 {
+   string s;
+   string pattern;
+   cin >> s >> pattern;
+   int n = pattern.size();
+   int lps[n];
+   lps[0] = 0;
+   // lets prepare lps
+   int prefix{0};
+   for(int i = 1; i < n; ++i) {
+        if (pattern[i] == pattern[prefix]) {
+            lps[i] = prefix++;
+            continue;
+        }
+        lps[i] = -1;
+        prefix = 0;
+   }
+   // Now lets start matching
+   int j = 0;
+   int ans{-1};
+   for(int i = 0; i < s.size();) {
+        if (j == n) {
+            ans = i - n;
+            break;
+        }
+        if (s[i] == pattern[j]) {
+            ++j;
+            ++i;
+            continue;
+        }
+        if (j == 0) ++i;
+        else {
+            if (lps[j - 1] == 0)
+                j = lps[j - 1];
+            else
+                j = lps[j - 1] + 1;
+        }
+   }
+   if (j == n) ans = (ans == -1 ) ? s.size() - n : ans;
+   cout << ans << nl;
     
 }
 int main(void)
 {
     setIO("");
     int t = 1;
-    cin >> t;
+    //cin >> t;
     while (t--)
         solve();
     return 0;

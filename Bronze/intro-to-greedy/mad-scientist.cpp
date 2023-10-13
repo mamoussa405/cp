@@ -234,13 +234,23 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+	int n;
+	string a,b;
+	cin >> n >> a >> b;
+	vs ans;
+	string tmp("");
+	for(int i = 0; i < a.size(); ++i){
+		if (a[i] != b[i]) tmp += b[i];
+		else if (!tmp.empty()) { ans.pb(tmp); tmp.clear(); }
+	}
+	if (!tmp.empty()) ans.pb(tmp);
+	cout << sz(ans) << nl;
 }
 int main(void)
 {
-    setIO("");
+	setIO("breedflip");
     int t = 1;
-    cin >> t;
+    //cin >> t;
     while (t--)
         solve();
     return 0;

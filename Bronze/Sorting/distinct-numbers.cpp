@@ -234,13 +234,25 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+	int n;
+	cin >> n;
+	vi v(n);
+	cin >> v;
+	sort(all(v));
+	int ans{1}, curr{v[0]};
+	for(int i = 1; i < n; ++i)
+	{
+		if (v[i] != curr){
+			++ans;
+			curr = v[i];
+		}
+	}
+	cout << ans << nl;
 }
 int main(void)
 {
-    setIO("");
     int t = 1;
-    cin >> t;
+    //cin >> t;
     while (t--)
         solve();
     return 0;

@@ -231,10 +231,25 @@ void setIO(string name = "")
       FILE* cout = freopen(string(name + ".out").c_str(), "w", stdout);
     }
 }
+int min_steps(string& s, int start, int end, char c) {
+    if ((end - start + 1) == 1) {
+        return s[end] != c;
+    }
+    // bu
+    int mid = (end + start) / 2;
+    int left_count = min_steps(s, start, mid, c + 1);
+    left_count += ((end - start + 1) / 2) - count(s.begin() + mid, s.end(), c);
+    int right_count = min_steps(s, mid + 1, end, c + 1);
+    right_count += ((end - start + 1) / 2) - count(s.begin(), s.begin() + mid, c);
+    return min(left_count, right_count);
+}
 
 void solve(void)
 {
-    
+    int n;
+    string s;
+    cin >> n >> s;
+    // cout << min_steps(s, 0, n - 1, 'a') << nl;
 }
 int main(void)
 {

@@ -231,10 +231,47 @@ void setIO(string name = "")
       FILE* cout = freopen(string(name + ".out").c_str(), "w", stdout);
     }
 }
+bool found(int H, int M, vpii& alarms)
+{
+    for(auto x:alarms)
+        if (x.first == H && x.second == M)
+            return true;
+    return false;
+}
 
 void solve(void)
 {
-    
+    int n,h,m;
+    cin >> n >> h >> m;
+    vpii alarms(n);
+    for(auto& n:alarms)
+        cin >> n.first >> n.second;
+    int H{0}, M{0};
+    while (true)
+    {
+        if (found(h,m, alarms))
+        {
+            cout << H << " " << M << nl;
+            return;
+        }
+        if (m == 59)
+        {
+            m = 0;
+            if (h == 23)
+                h = 0;
+            else
+                ++h;
+        }
+        else
+            ++m;
+        if (M == 59)
+        {
+            M = 0;
+            ++H;
+        }
+        else
+            ++M;
+    }
 }
 int main(void)
 {

@@ -234,11 +234,10 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+
 }
 int main(void)
 {
-    setIO("");
     int t = 1;
     cin >> t;
     while (t--)

@@ -234,7 +234,40 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int n;
+   cin >> n;
+   vi v(n);
+   ll prod{1};
+   for (int& x:v) {
+    cin >> x;
+    prod *= x;
+   }
+   int ans{0};
+   set<int> choosed;
+   if (!(prod%2) && prod >= 1<<n) cout << 0 << nl;
+   else {
+    while (prod < 1<<n) {
+        prod = 1;
+        bool found_one{false};
+        for (int i = 0; i < n; ++i) {
+            if (!(v[i]%2) || !((i+1)%2)) {
+                if (choosed.empty() || !choosed.count(i)) {
+                    choosed.insert(i);
+                    prod *= (v[i]*i);
+                    found_one = true;
+                    ++ans;
+                } else prod *= v[i];
+            } else {
+                prod *= v[i];
+            }
+        }
+        if (!found_one) {
+            cout << -1 << nl;
+            return;
+        }
+    }
+    cout << ans << nl;
+   }
 }
 int main(void)
 {

@@ -234,13 +234,16 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int w;
+   cin >> w;
+   if (w%2 || w == 2) cout << "NO" << nl;
+   else cout << "YES" << nl;
 }
 int main(void)
 {
     setIO("");
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
         solve();
     return 0;

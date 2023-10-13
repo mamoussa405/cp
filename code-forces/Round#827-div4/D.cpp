@@ -234,7 +234,19 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+    int n;
+    cin >> n;
+    vi v(n);
+    cin >> v;
+    int ans{-1};
+    for (int i = n - 1; i >= 0; --i) {
+        for (int j = i; j >= 0; --j) {
+            if (__gcd(v[i], v[j]) == 1) {
+                ans = max(ans, i + j + 2);
+            }
+        }
+    }
+    cout << ans << nl;
 }
 int main(void)
 {

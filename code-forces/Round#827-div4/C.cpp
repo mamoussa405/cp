@@ -234,7 +234,26 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+    char n;
+    cin >> n;
+    string s;
+    int r{8};
+    char ans{'A'};
+    while (r--) {
+        cin >> s;
+        if (ans == 'A'){
+            bool found_B{false};
+            for(char& c:s) {
+                if (c == 'B') {
+                    found_B = true;
+                    break;
+                }
+            }
+            if (!found_B) ans = 'R';
+        }
+    }
+    if (ans == 'A') cout << 'B' <<nl;
+    else cout << ans << nl;
 }
 int main(void)
 {

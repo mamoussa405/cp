@@ -234,13 +234,33 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int n;
+   cin >> n;
+   vpii programming_students;
+   vpii math_students;
+   vpii pe_students; 
+   int i{1};
+   while (n--) {
+    int student;
+    cin >> student;
+    if  (student == 1) programming_students.push_back({student, i});
+    else if (student == 2) math_students.push_back({student, i});
+    else pe_students.push_back({student, i});
+    ++i;
+   }
+   int __min = min({programming_students.size(), math_students.size(), pe_students.size()});
+   cout << __min << nl;
+   i = 0;
+   while (__min--) {
+    cout << programming_students[i].second <<  " " << math_students[i].second << " " << pe_students[i].second << nl;
+    ++i;
+   }
 }
 int main(void)
 {
     setIO("");
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
         solve();
     return 0;

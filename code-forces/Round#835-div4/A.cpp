@@ -234,7 +234,10 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   vi v(3);
+   cin >> v[0] >> v[1] >> v[2]; 
+   sort(all(v));
+   cout << v[1] << nl;
 }
 int main(void)
 {

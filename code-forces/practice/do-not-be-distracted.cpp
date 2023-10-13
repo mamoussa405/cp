@@ -234,7 +234,23 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int n;
+   string s;
+   cin >> n >> s; 
+   vi v(26, 0);
+   char prev{s[0]};
+   v[s[0]-'A']++;
+   for (int i = 1; i < n; ++i) {
+    if (s[i] != prev) {
+        prev = s[i];
+        if (v[s[i]-'A'] != 0) {
+            cout << "NO" << nl;
+            return;
+        }
+    }
+    v[s[i]-'A']++;
+   }
+   cout << "YES" << nl;
 }
 int main(void)
 {

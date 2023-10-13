@@ -234,7 +234,25 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int n;
+   cin >> n;
+   vi v(n);
+   cin >> v;
+   int most_existed;
+   if (v[0] == v[1]) most_existed = v[0];
+   else if (v[0] == v[2]) {
+    cout << 2 << nl;
+    return;
+   } else {
+    cout << 1 << nl;
+    return;
+   }
+   for (int i = 1; i < n; ++i) {
+    if (most_existed != v[i]) {
+        cout << i + 1 << nl;
+        return;
+    }
+   }
 }
 int main(void)
 {

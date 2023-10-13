@@ -234,7 +234,13 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   ll a,b,c;
+  cin >> a >> b >> c;
+  ll first_elevator_time = abs(a-1);
+  ll second_elevator_time = abs(b-c) + abs(c-1);
+  if (first_elevator_time < second_elevator_time) cout << 1 << nl;
+  else if (first_elevator_time > second_elevator_time) cout << 2 << nl;
+  else cout << 3 << nl;
 }
 int main(void)
 {

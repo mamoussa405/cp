@@ -234,13 +234,26 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+	int q;
+	cin >> q;
+	mii m;
+	while (q--){
+		int c,k,v;
+		cin >> c;
+		if (c == 0){
+			cin >> k >> v;
+			m.insert({k,v});
+		}
+		else{
+			cin >> k;
+			cout << m[k] << nl;
+		}
+	}
 }
 int main(void)
 {
-    setIO("");
     int t = 1;
-    cin >> t;
+    //cin >> t;
     while (t--)
         solve();
     return 0;

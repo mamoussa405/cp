@@ -234,7 +234,24 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int n;
+   cin >> n;
+   vi v(n);
+   cin >> v;
+   string s;
+   cin >> s;
+   map<int, char> ms;
+   for (int i = 0; i < n; ++i) {
+    if (!ms.count(v[i])) {
+        ms[v[i]] = s[i];
+    } else {
+        if (s[i] != ms[v[i]]) {
+            cout << "NO" << nl;
+            return;
+        }
+    }
+   }
+    cout << "YES" << nl;
 }
 int main(void)
 {

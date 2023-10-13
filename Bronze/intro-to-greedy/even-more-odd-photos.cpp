@@ -234,13 +234,43 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+	int n;
+	cin >> n;
+	int evens{0}, odds{0};
+	int ans{0};
+	bool even_group{true};
+	while (n--){
+		int num;
+		cin >> num;
+		if (num%2) ++odds;
+		else ++evens;
+	}
+	while (odds + evens > 0){
+		if (!odds && !even_group) break;
+		if (even_group){
+			if (evens) --evens;
+			else odds -= 2;
+			even_group = false;
+		} else {
+			if (evens) --odds;
+			else {
+				--odds;
+				if (odds%6 == 4){
+					ans += 2;
+					break;
+				}
+			}
+			even_group = true;
+		}
+		++ans;
+	}
+	cout << ans << nl;
 }
+
 int main(void)
 {
-    setIO("");
     int t = 1;
-    cin >> t;
+    //cin >> t;
     while (t--)
         solve();
     return 0;

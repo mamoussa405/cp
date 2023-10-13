@@ -234,13 +234,42 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+	int n,sum{0}, ans{0};
+	cin >> n;
+	vi w(2*n), k;
+	cin >> w;
+	sort(all(w));
+	cout << w;
+	map<int, pair<int,int>> m;
+	for(int i = 1; i < 2*n - 1; ++i){
+		m.insert({w[i],{w[i] - w[i-1], w[i+1] - w[i]}});
+	}
+	vi diff;
+	int prev{-1};
+	iter(it,m){
+		cout << it->first << "--> {" << it->second.first << "," << it->second.second << "}" << nl;
+		int _min = min(it->second.first, it->second.second);	
+		if (_min != prev) {
+			diff.pb(_min);
+			prev = _min;
+		}
+		else {
+			int _max = max(it->second.first, it->second.second);
+			diff.pb(_max);
+			prev = _max;
+		}
+	}
+	sort(all(diff));
+	cout << diff;
+	for(int i = 0, j = 1; i < sz(diff) && j < n; ++i, ++j)
+		ans += diff[i];
+	cout << ans << nl;
+
 }
 int main(void)
 {
-    setIO("");
     int t = 1;
-    cin >> t;
+    //cin >> t;
     while (t--)
         solve();
     return 0;

@@ -234,7 +234,19 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+  string s,t;
+  cin >> s;
+  t = s;
+  sort(t.begin(), t.end());
+  multimap<char, pair<int, pair<char, char>> m;
+  set<int> visited;
+  for(int i = 0; i < sz(t); ++i) {
+	  if (i == 0) {
+		  m[t[i]] = {{}};
+	  } else if (i == sz(t) - 1) {
+	  } else {
+	  }
+  }
 }
 int main(void)
 {

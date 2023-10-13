@@ -234,13 +234,21 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+  int n,k;
+  cin >> n >> k;
+  vi v(n);
+  cin >> v;  
+  int choosed_students{0};
+  for(int& x:v) {
+    if (5 - x >= k) ++choosed_students;
+  }
+  cout << choosed_students / 3 << nl;
 }
 int main(void)
 {
     setIO("");
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
         solve();
     return 0;

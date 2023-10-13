@@ -234,7 +234,10 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+    int n,s;
+    cin >> n >> s;
+    int m = (n/2) + 1;
+    cout << s/m << nl;
 }
 int main(void)
 {

@@ -234,7 +234,17 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int n;
+   cin >> n;
+   if (n&1)  --n;
+   int ans{0};
+   for (int i = n - 1; i >= 1; --i) {
+    if (!(n%i)) {
+        ans = __gcd(n,i);
+        break;
+    } 
+   }
+   cout << ans << nl;
 }
 int main(void)
 {

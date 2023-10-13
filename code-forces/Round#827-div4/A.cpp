@@ -234,7 +234,10 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int a,b,c;
+   cin >> a >> b >> c; 
+   if (a == b+c || b == a+c || c == b+a) cout << "YES\n"; 
+   else cout << "NO\n";
 }
 int main(void)
 {

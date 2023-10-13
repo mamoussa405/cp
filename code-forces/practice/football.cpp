@@ -234,13 +234,29 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+  string s;
+  cin >> s;
+  char curr_char{s[0]};
+  int counter{1};
+  for (int i = 1; i < s.size(); ++i) {
+    if (s[i] != curr_char) {
+        if (counter >= 7) {
+            cout << "YES" << nl;
+            return;
+        }
+        counter = 0;
+        curr_char = s[i];
+    }
+    ++counter;
+  }
+  if (counter >= 7) cout << "YES" << nl;
+   else cout << "NO" << nl;
 }
 int main(void)
 {
     setIO("");
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
         solve();
     return 0;

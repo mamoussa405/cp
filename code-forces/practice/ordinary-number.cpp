@@ -234,7 +234,24 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int n;
+   cin >> n;
+   int ans{0};
+   if (n >= 10) ans += 9;
+   else {
+    cout << n << nl;
+    return;
+   }
+   int inc{11};
+   for (int x = inc; x <= n; x += inc) {
+    if (to_string(x).length() > to_string(inc).length()) {
+        inc = (inc*10) + 1;
+        x = 0;
+        continue;
+    }
+    ++ans;
+   } 
+   cout << ans << nl;
 }
 int main(void)
 {

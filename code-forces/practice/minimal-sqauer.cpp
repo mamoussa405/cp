@@ -234,7 +234,11 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int a,b;
+   cin >> a >> b;
+   int __min = min(a,b) * 2; 
+   if (__min >= max(a,b)) cout << bexp(__min, 2) << nl;
+   else cout << bexp(max(a,b), 2) << nl;
 }
 int main(void)
 {

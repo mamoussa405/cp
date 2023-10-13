@@ -232,15 +232,83 @@ void setIO(string name = "")
     }
 }
 
+int prev_max(vi& line, int ind){
+	int _max{line[ind]};
+	int ans{ind};
+	for(int i = ind; i >= 0; --i){
+		if (line[i] >=_max){
+			ans = i;
+			_max = line[i];
+		}
+	}
+	return ans;
+}
+int next_min(vi& line, int ind) {
+	int _min{line[ind]};
+	int ans{ind};
+	for(int i = ind; i < sz(line); ++i) {
+		if (line[i] <= _min) {
+			ans = i;
+			_min = line[i];
+		}
+	}
+	return ans;
+}
+bool right_min(vi& line, int ind){
+	int _min{line[ind]};
+	for(int i = ind + 1; i < sz(line); ++i){
+		if (line[i] < _min) return true;
+	}
+	return false;
+}
 void solve(void)
 {
-    
+	int n;
+	cin >> n;
+	vi line(n),tmp;
+	for(auto& cow:line){
+		cin >> cow;
+		tmp.pb(cow);
+	}
+	sort(all(tmp));
+	int bessie_ind{-1};
+	int ans{0};
+	for(int i = 0; i < n; ++i) {
+		if (line[i] != tmp[i]) {
+			bessie_ind = i;
+			break;
+		}
+	}
+	if (bessie_ind == -1){
+		cout << 0 << nl;
+		return;
+	}
+	bool swap_right = right_min(line, bessie_ind);
+	if (swap_right){
+		for(int i = bessie_ind; i < n;){
+			int next_min_ind = next_min(line, i);
+			if (next_min_ind == i) break;
+			swap(line[next_min_ind], line[i]);
+			++ans;
+		}	
+	} else {
+		for(int i = bessie_ind; i >= 0;){
+			int prev_max_ind = prev_max(line, i);
+			if (prev_max_ind == i) break;
+			swap(line[prev_max_ind], line[i]);
+			i = prev_max_ind;
+			++ans;
+		}
+	}
+	cout << ans << nl;
+	// 1 3 2 4 7 7 9
+
 }
 int main(void)
 {
-    setIO("");
+//	setIO("outofplace");
     int t = 1;
-    cin >> t;
+    //cin >> t;
     while (t--)
         solve();
     return 0;

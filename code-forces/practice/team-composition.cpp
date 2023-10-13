@@ -234,7 +234,17 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+    int a,b;
+    cin >> a >> b;
+    int team_of_two{min(a,b)};
+    int rest_members = max(a,b) - min(a,b);
+    rest_members /= 2;
+    if (team_of_two <= rest_members) {
+        cout << team_of_two << nl;
+        return;
+    }
+    team_of_two -= rest_members;
+    cout << rest_members + (team_of_two / 2) << nl;
 }
 int main(void)
 {

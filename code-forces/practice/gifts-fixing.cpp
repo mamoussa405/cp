@@ -234,7 +234,22 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int n; cin >> n; 
+   vi a(n), b(n);
+   int __min_a{(int)1e9}, __min_b{int(1e9)};
+   for (int& x:a) {
+    cin >> x;
+    __min_a = min(__min_a, x);
+   }
+   for (int& x:b) {
+    cin >> x;
+    __min_b = min(__min_b, x);
+   }
+   ll ans{0};
+   for (int i = 0; i < n; ++i) {
+    ans += (ll)max(a[i] - __min_a, b[i] - __min_b);
+   }
+   cout << ans << nl;
 }
 int main(void)
 {

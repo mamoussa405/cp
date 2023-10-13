@@ -234,7 +234,23 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int ans{0};
+   int n;
+  cin >> n;
+ string gr_pawns, enemy;
+cin >> enemy  >> gr_pawns;
+for(int i = 0; i < sz(gr_pawns); ++i) {
+	if (gr_pawns[i] == '1' && enemy[i] == '0') ++ans;
+	else if (gr_pawns[i] == '1' && i > 0 && enemy[i - 1] == '1') {
+		++ans;
+		enemy[i-1] = '0';
+	}
+	else if (gr_pawns[i] == '1' && i < sz(gr_pawns) - 1 && enemy[i + 1] == '1') {
+		++ans;
+		enemy[i+1] = '0';
+	}
+}
+cout << ans << nl;
 }
 int main(void)
 {

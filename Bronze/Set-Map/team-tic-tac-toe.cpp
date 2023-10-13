@@ -234,13 +234,67 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+	vs board(3);
+	cin >> board;
+	sc inds;
+	ss teams;
+	for(int y = 0; y < 3; ++y){
+		sc s;
+		for(int x = 0; x < 3; ++x){
+			s.insert(board[y][x]);
+		}
+		if (s.size() == 1) inds.insert(*s.begin());
+		else if (s.size() == 2){
+			string team("");
+		       team += *s.begin();
+		       team += *(++s.begin());
+			teams.insert(team);
+		}
+	}
+	for(int x = 0; x < 3; ++x){
+		sc s;
+		for(int y = 0; y < 3; ++y){
+			s.insert(board[y][x]);
+		}
+		if (s.size() == 1) inds.insert(*s.begin());
+		else if (s.size() == 2){
+			string team("");
+		       team += *s.begin();
+		       team += *(++s.begin());
+			teams.insert(team);
+		}
+	}
+	sc s;
+	// left diag
+	s.insert(board[0][0]);
+	s.insert(board[1][1]);
+	s.insert(board[2][2]);
+	if (s.size() == 1) inds.insert(*s.begin());
+	else if (s.size() == 2){
+		string team("");
+	       team += *s.begin();
+	       team += *(++s.begin());
+		teams.insert(team);
+	}
+	s.clear();
+	// right diag
+	s.insert(board[0][2]);
+	s.insert(board[1][1]);
+	s.insert(board[2][0]);
+	if (s.size() == 1) inds.insert(*s.begin());
+	else if (s.size() == 2){
+		string team("");
+	       team += *s.begin();
+	       team += *(++s.begin());
+		teams.insert(team);
+	}
+	cout << sz(inds) << nl << sz(teams) << nl;
 }
 int main(void)
 {
-    setIO("");
+	setIO("tttt");
     int t = 1;
-    cin >> t;
+    //cin >> t;
     while (t--)
         solve();
     return 0;

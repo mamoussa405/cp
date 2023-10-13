@@ -234,7 +234,31 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int n;
+   cin >> n;
+   vi v(n);
+   bool found_one{false}, found_zero{false};
+   for(int& x:v) {
+        cin >> x;
+        if (x == 1) found_one = true;
+        if (x == 0) found_zero = true;
+   } 
+   if (found_one && found_zero) {
+        cout << "NO\n";
+        return;
+   }
+   if (found_one && !found_zero) {
+        sort(all(v));
+        for(int i = 1; i < n; ++i) {
+            int dis = v[i] - v[i - 1];
+            if (dis == 1)
+            {
+                cout << "NO\n";
+                return;
+            }
+        }
+   }
+    cout << "YES\n";
 }
 int main(void)
 {

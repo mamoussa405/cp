@@ -234,13 +234,25 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+    int n;
+    cin >> n; 
+    ll ans{0};
+    while (n--) {
+        int num;
+        cin >> num;
+        ans += num;
+    }
+    int k;
+    cin >> k;
+    if (ans == k) cout << "perfectly balanced" << nl;
+    else if (ans < k) cout << "the secret ingredient is crime" << nl;
+    else cout << "my time has come" << nl;
 }
 int main(void)
 {
     setIO("");
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
         solve();
     return 0;

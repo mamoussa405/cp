@@ -232,15 +232,34 @@ void setIO(string name = "")
     }
 }
 
+void generateCombinations(vvi& ans,vi& tmp, int n, int k, int curNumber) {
+    if (tmp.size() == k){
+        ans.push_back(tmp);   
+        return;
+    } 
+    for (int i = curNumber; i <= n; ++i) {
+        tmp.push_back(i);
+        generateCombinations(ans, tmp, n, k, i + 1);
+        tmp.pop_back();
+    }
+}
+vector<vector<int>> combine(int n, int k) {
+    vvi ans;
+    vi tmp;
+    generateCombinations(ans,tmp, n, k, 1);
+    return ans;
+}
 void solve(void)
 {
-    
+   int n,k;
+   cin >> n >> k;
+   combine(n, k);
 }
 int main(void)
 {
     setIO("");
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
         solve();
     return 0;

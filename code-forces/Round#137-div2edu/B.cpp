@@ -234,7 +234,11 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int n;
+   cin >> n;
+   cout << 1 << " ";
+   for (int i = 3; i <= n; ++i) cout << i << " ";
+   cout << 2 << nl;
 }
 int main(void)
 {

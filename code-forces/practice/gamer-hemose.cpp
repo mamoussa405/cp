@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define all(cont) cont.begin(), cont.end()
-#define rall(cont) cont.end(), cont.begin()
+#define rall(cont) cont.rbegin(), cont.rend()
 #define iter(it, l) for (auto it = l.begin(); it != l.end(); ++it)
 #define riter(it, l) for (auto it = --l.end(); it != l.begin(); --it)
 #define nl "\n"
@@ -234,7 +234,16 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+    int n,h;
+    cin >> n >> h;
+    vi v(n);
+    cin >> v;
+    sort(rall(v));
+    ll two_waepons = v[0] + v[1];
+    float res = (float)h / (float)two_waepons;
+    if (!(h%two_waepons)) cout << 2 * res << nl;
+    else if (!(h%two_waepons) <= v[0]) cout << (2 * (int)res) + 1 << nl;
+    else cout << (2 * (int)res) + 2 << nl;
 }
 int main(void)
 {

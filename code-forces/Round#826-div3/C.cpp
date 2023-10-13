@@ -234,7 +234,40 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int n;
+   cin >> n;
+   vi v(n);
+   cin >> v; 
+   int ans{n};
+   long long sum{0}, cur_sum{0};
+   int init_thick{1};
+   while (init_thick <= n) {
+        sum = 0;
+        int tmp = init_thick;
+        int i = 0;
+        while (tmp--) sum += (long long)v[i++];
+        bool good_thick{false};
+        int tmp_ans{1};
+        while (i < n) {
+            int cur_thick{1};
+            cur_sum = 0;
+            while (i < n) {
+                cur_sum += (long long)v[i++];
+                if (cur_sum >= sum) break;
+                cur_thick++;
+            }
+            if (cur_sum != sum || (i == n && cur_sum != sum)) {
+                good_thick = false;
+                break; 
+            }
+            good_thick = true;
+            tmp_ans = max(tmp_ans, cur_thick);
+        }   
+        if (good_thick)
+                ans = min(ans, tmp_ans);
+        ++init_thick;
+    }
+    cout << ans << nl;
 }
 int main(void)
 {

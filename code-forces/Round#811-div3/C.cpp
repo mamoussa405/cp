@@ -234,7 +234,21 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int s;
+   cin >> s;
+   vi ans;
+   for(int i = 9; s > 0; --i)
+   {
+    if (s >= i)
+    {
+        ans.push_back(i);
+        s -= i;
+    }
+   }
+   sort(all(ans));
+    for(auto x:ans)
+        cout << x;
+    cout << nl;
 }
 int main(void)
 {

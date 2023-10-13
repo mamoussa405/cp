@@ -234,13 +234,34 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+	int n;
+	cin >> n;
+	msi logs;
+	ss cows;
+	while (n--){
+		string cow;
+		int amount;
+		cin >> cow >> amount;
+		logs[cow] += amount;
+		cows.insert(cow);
+	}
+	multimap<int, string> logs_rev;
+	for(auto x:logs) logs_rev.insert({x.second, x.first});
+	if (cows.size() != 7) {
+		auto tmp = logs_rev.begin();
+		if (logs_rev.upper_bound(logs_rev.begin()->first) != (++tmp)) cout << "Tie" << nl;
+		else cout << logs_rev.begin()->second << nl;
+	}
+	else {
+		if (logs_rev.upper_bound(logs_rev.begin()->first) == logs_rev.end()) cout << "Tie" << nl;
+		else cout << logs_rev.upper_bound(logs_rev.begin()->first)->second << nl;
+	}
 }
 int main(void)
 {
-    setIO("");
+	setIO("notlast");
     int t = 1;
-    cin >> t;
+    //cin >> t;
     while (t--)
         solve();
     return 0;

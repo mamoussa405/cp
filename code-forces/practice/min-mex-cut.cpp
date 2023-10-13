@@ -234,7 +234,30 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   string s;
+  cin >> s;
+  ll ans{0};
+  char prev = s[0];
+  bool found_zero{s[0] == '0'}, found_one{s[0] == '1'};
+ for(int i = 1; i < sz(s); ++i){
+	 if(!found_zero)
+		 found_zero = s[i] == '0';
+	 if (!found_one)
+		 found_one = s[i] == '1';
+	 if (prev != s[i]) {
+		 ans += (prev == '0') ? 1 : 0;
+		 prev = s[i];
+		 if (ans >= 2) break;
+		 continue;
+	 }
+ } 
+ ans += (prev == '0') ? 1 : 0;
+ if (found_zero && found_one) {
+	 if (ans < 2) cout << ans << nl;
+	 else cout << 2 << nl;
+ }
+ else if (found_zero) cout << 1 << nl;
+ else cout << 0 << nl; 
 }
 int main(void)
 {

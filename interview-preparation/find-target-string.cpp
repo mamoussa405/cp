@@ -10,7 +10,7 @@ using namespace std;
 #define lb lower_bound
 #define ub upper_bound
 #define er equal_range
-#define sz(x) (int)(x.size())
+#define SZ size()
 #define L length()
 #define F first
 #define S second
@@ -55,9 +55,9 @@ typedef unsigned long long ull;
 ostream& operator<<(ostream& out, vi& v)
 { 
     cout << '['; 
-    for(int i = 0; i < sz(v); ++i) 
+    for(int i = 0; i < v.SZ; ++i) 
     {
-        if (i != sz(v) - 1)
+        if (i != v.SZ - 1)
             cout << v[i] << ", ";
         else
             cout << v[i];
@@ -68,9 +68,9 @@ ostream& operator<<(ostream& out, vi& v)
 ostream& operator<<(ostream& out, vc& v)
 { 
     cout << '['; 
-    for(int i = 0; i < sz(v); ++i) 
+    for(int i = 0; i < v.SZ; ++i) 
     {
-        if (i != sz(v) - 1)
+        if (i != v.SZ - 1)
             cout << v[i] << ", ";
         else
             cout << v[i];
@@ -81,9 +81,9 @@ ostream& operator<<(ostream& out, vc& v)
 ostream& operator<<(ostream& out, vs& v)
 { 
     cout << '['; 
-    for(int i = 0; i < sz(v); ++i) 
+    for(int i = 0; i < v.SZ; ++i) 
     {
-        if (i != sz(v) - 1)
+        if (i != v.SZ - 1)
             cout << v[i] << ", ";
         else
             cout << v[i];
@@ -93,13 +93,13 @@ ostream& operator<<(ostream& out, vs& v)
 }
 ostream& operator<<(ostream& out, vvi& v)
 { 
-    for(int i = 0; i < sz(v); ++i) 
+    for(int i = 0; i < v.SZ; ++i) 
     {
         cout << i << "-->";
         cout << '[';
-        for(int j = 0; j < sz(v[i]); ++j)
+        for(int j = 0; j < v[i].SZ; ++j)
         {
-            if (j != sz(v[i]) - 1)
+            if (j != v[i].SZ - 1)
                 cout << v[i][j] << " ";
             else
                 cout << v[i][j];
@@ -110,13 +110,13 @@ ostream& operator<<(ostream& out, vvi& v)
 }
 ostream& operator<<(ostream& out, vvc& v)
 { 
-    for(int i = 0; i < sz(v); ++i) 
+    for(int i = 0; i < v.SZ; ++i) 
     {
         cout << i << "-->";
         cout << '[';
-        for(int j = 0; j < sz(v[i]); ++j)
+        for(int j = 0; j < v[i].SZ; ++j)
         {
-            if (j != sz(v[i]) - 1)
+            if (j != v[i].SZ - 1)
                 cout << v[i][j] << " ";
             else
                 cout << v[i][j];
@@ -127,13 +127,13 @@ ostream& operator<<(ostream& out, vvc& v)
 }
 ostream& operator<<(ostream& out, vvs& v)
 { 
-    for(int i = 0; i < sz(v); ++i) 
+    for(int i = 0; i < v.SZ; ++i) 
     {
         cout << i << "-->";
         cout << '[';
-        for(int j = 0; j < sz(v[i]); ++j)
+        for(int j = 0; j < v[i].SZ; ++j)
         {
-            if (j != sz(v[i]) - 1)
+            if (j != v[i].SZ - 1)
                 cout << v[i][j] << " ";
             else
                 cout << v[i][j];
@@ -145,9 +145,9 @@ ostream& operator<<(ostream& out, vvs& v)
 ostream& operator<<(ostream& out, vpii& v)
 { 
     cout << "[ ";
-    for(int i = 0; i < sz(v); ++i)
+    for(int i = 0; i < v.SZ; ++i)
     {
-        if (i != sz(v) - 1)
+        if (i != v.SZ - 1)
             cout << '{' << v[i].F << ", " << v[i].S << '}' << ", ";
         else
             cout << '{' << v[i].F << ", " << v[i].S << '}';
@@ -158,9 +158,9 @@ ostream& operator<<(ostream& out, vpii& v)
 ostream& operator<<(ostream& out, vpic& v)
 { 
     cout << "[ ";
-    for(int i = 0; i < sz(v); ++i)
+    for(int i = 0; i < v.SZ; ++i)
     {
-        if (i != sz(v) - 1)
+        if (i != v.SZ - 1)
             cout << '{' << v[i].F << ", " << v[i].S << '}' << ", ";
         else
             cout << '{' << v[i].F << ", " << v[i].S << '}';
@@ -171,9 +171,9 @@ ostream& operator<<(ostream& out, vpic& v)
 ostream& operator<<(ostream& out, vpci& v)
 { 
     cout << "[ ";
-    for(int i = 0; i < sz(v); ++i)
+    for(int i = 0; i < v.SZ; ++i)
     {
-        if (i != sz(v) - 1)
+        if (i != v.SZ - 1)
             cout << '{' << v[i].F << ", " << v[i].S << '}' << ", ";
         else
             cout << '{' << v[i].F << ", " << v[i].S << '}';
@@ -184,9 +184,9 @@ ostream& operator<<(ostream& out, vpci& v)
 ostream& operator<<(ostream& out, vpss& v)
 { 
     cout << "[ ";
-    for(int i = 0; i < sz(v); ++i)
+    for(int i = 0; i < v.SZ; ++i)
     {
-        if (i != sz(v) - 1)
+        if (i != v.SZ - 1)
             cout << '{' << v[i].F << ", " << v[i].S << '}' << ", ";
         else
             cout << '{' << v[i].F << ", " << v[i].S << '}';
@@ -194,11 +194,7 @@ ostream& operator<<(ostream& out, vpss& v)
     cout << " ]\n";
     return out;
 }
-/*--------------------------- extraction operator overloads -------------------*/
-void operator>>(istream& in, vi& v) { for(auto& x:v) in >> x; }
-void operator>>(istream& in, vc& v) { for(auto& x:v) in >> x; }
-void operator>>(istream& in, vs& v) { for(auto& x:v) in >> x; }
-/*---------------------------------------------------------------------------*/
+
 ull bexp(ull x, ull n)
 {
     ull  res = 1;
@@ -212,14 +208,6 @@ ull bexp(ull x, ull n)
     return res; 
 }
 
-vi brep(ll n)
-{
-	vi res;
-	for(int i = 63; i >= 0; --i)
-		(n&(1<<i)) ? res.pb(1) : res.pb(0);
-	return res;
-}
-
 void setIO(string name = "")
 {
     ios_base::sync_with_stdio(0);
@@ -228,19 +216,44 @@ void setIO(string name = "")
     if (name != "")
     {
       FILE* cin = freopen(string(name + ".in").c_str(), "r", stdin);
-      FILE* cout = freopen(string(name + ".out").c_str(), "w", stdout);
     }
 }
 
+int find_right(vs& v, int i, string s){
+	int ans{0};
+	for(int j = i; j < v.SZ; ++j){
+		if (v[j] == s) return ans;
+		++ans;
+	}
+	return -1;
+}
+
+int find_left(vs& v, int i, string s){
+	int ans{0};
+	for(int j = i; j >= 0; --j){
+		if (v[j] == s) return ans;
+		++ans;
+	}
+	return -1;
+}
 void solve(void)
 {
-    
+	int n,i;
+	string s;
+	cin >> n >> i >> s;
+	vs v(n);
+	for(auto& x:v)
+		cin >> x;
+	int left_steps = find_left(v, i, s);
+	int right_steps = find_right(v, i, s);
+	int _min = min(left_steps, right_steps);
+	cout << ((_min == -1) ? max(left_steps, right_steps) : _min) << nl;
 }
 int main(void)
 {
-    setIO("");
+	setIO("input");
     int t = 1;
-    cin >> t;
+    //cin >> t;
     while (t--)
         solve();
     return 0;

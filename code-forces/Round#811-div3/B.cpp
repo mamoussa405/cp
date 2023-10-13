@@ -234,7 +234,38 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int n;
+   cin >> n; 
+   vi v(n),tmp;
+   map<int ,int> m;
+   for(auto& x:v)
+   {
+    cin >> x;
+    tmp.push_back(x);
+   }
+   sort(all(tmp));
+   vi::iterator it = tmp.begin();
+   while (it < tmp.end())
+   {
+    auto rit = equal_range(all(tmp), *it);
+    m.insert({*it, rit.second - rit.first});
+    it = rit.second;
+   }
+   bool found{false};
+   int index{0};
+   for(int i = 0; i < sz(v); ++i)
+   {
+    if (m[v[i]] > 1)
+    {
+        index = i;
+        found = true;
+        --m[v[i]];
+    }
+   }
+   if (found)
+    cout << index + 1 << nl;
+    else
+    cout << index << nl;
 }
 int main(void)
 {

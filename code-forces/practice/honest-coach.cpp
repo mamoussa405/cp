@@ -234,7 +234,16 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int n;
+   cin >> n;
+   vi v(n);
+   cin >> v;
+   int ans{(int)1e4};
+   sort(all(v));
+   for (int i = 1; i < n; ++i) {
+    ans = min(ans, v[i] - v[i - 1]);
+   }
+   cout << ans << nl;
 }
 int main(void)
 {

@@ -234,13 +234,34 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+	int n,x;
+	cin >> n >> x;
+	int i = 1;
+	vi numbers(n);
+	multimap<int,int> numbers_ind;
+	for(auto& k:numbers){
+		cin >> k;
+		numbers_ind.insert({k,i});
+		++i;
+	}
+	for(auto& k:numbers){
+		if (numbers_ind.count(x-k)){
+			auto it = numbers_ind.upper_bound(x-k);
+			auto it1 = numbers_ind.lower_bound(k);
+			--it;
+			if (it->second != it1->second)
+			{
+				cout << it1->second << ' ' << it->second << nl;
+				return;
+			}
+		}
+	}
+	cout << "IMPOSSIBLE" << nl;
 }
 int main(void)
 {
-    setIO("");
     int t = 1;
-    cin >> t;
+    //cin >> t;
     while (t--)
         solve();
     return 0;

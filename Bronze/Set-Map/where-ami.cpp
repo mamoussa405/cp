@@ -234,13 +234,37 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+	 int n,ans{0};
+	 string road;
+	 cin >> n >> road;;
+	 for(int i = 0; i < sz(road); ++i){
+		 sc tmp;
+		 tmp.insert(road[i]);
+		 for(int j = i + 1; j < sz(road); ++j){
+			 if (!tmp.count(road[j])){
+				 tmp.insert(road[j]);
+				 continue;
+			 }
+			 ans = max(ans, (int)tmp.size());
+			 if(ans == road.size()){
+				 cout << ans << nl;
+				 return;
+			 }
+			 break;
+		 }
+		 ans = max(ans, (int)tmp.size());
+		 if(ans == road.size()){
+			 cout << ans << nl;
+			 return;
+		 }
+	 }
+	 cout << ans << nl;
 }
 int main(void)
 {
-    setIO("");
+   setIO("whereami");
     int t = 1;
-    cin >> t;
+    //cin >> t;
     while (t--)
         solve();
     return 0;

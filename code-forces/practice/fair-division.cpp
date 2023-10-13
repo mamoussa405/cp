@@ -234,7 +234,26 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int n;
+   cin >> n;
+   vi v(n);
+   int one_count{0}, two_count{0};
+   for (int& x:v){
+    cin >> x;
+    (x == 1) ? ++one_count:++two_count;
+   }
+   if (one_count == (two_count * 2)) {
+    cout << "YES" << nl;
+    return;
+   }
+   int two_rest = two_count % 2;
+   if (one_count - (two_rest * 2) < 0) {
+        cout << "NO" << nl;
+   } else {
+        one_count -= (two_rest * 2);
+        if (one_count%2) cout << "NO" << nl;
+        else cout << "YES" << nl;
+   }
 }
 int main(void)
 {

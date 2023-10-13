@@ -234,7 +234,28 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int start_ascii = 97;
+   int n;
+  cin >> n;
+  string s{""},t;
+  cin >> t; 
+  for(int c = sz(t) - 1; c >= 0;) {
+	  string tmp{t[c]};
+	 if (tmp != "0") {
+		 s += static_cast<char>(start_ascii + stoi(tmp) - 1);
+	 }
+	 else {
+		tmp.pop_back();
+		tmp += t[c - 2];
+		tmp += t[c - 1];
+		c -= 2;
+		s += static_cast<char>(start_ascii + stoi(tmp) - 1);
+	 }
+	 c--;
+
+  }
+  reverse(all(s));
+ cout << s << nl;
 }
 int main(void)
 {

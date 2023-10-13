@@ -231,10 +231,33 @@ void setIO(string name = "")
       FILE* cout = freopen(string(name + ".out").c_str(), "w", stdout);
     }
 }
-
+mii depth;
+void get_depth(vi& v,int start, int end, int dv) {
+    if (end - start + 1 <= 0) return;
+    int max_el{v[start]};
+    int max_ind{start};
+    for (int i = start + 1; i <= end; ++i) {
+        if (v[i] > max_el) {
+            max_el = v[i];
+            max_ind = i;
+        }
+    }
+    depth[v[max_ind]] = dv;
+    if (max_ind > start)
+        get_depth(v, start, max_ind - 1, dv + 1);
+    if (max_ind < end)
+        get_depth(v, max_ind + 1, end, dv + 1);
+}
 void solve(void)
 {
-    
+    int n;
+    cin >> n; 
+    vi v(n);
+    cin >> v;
+    get_depth(v,0, v.size() - 1, 0);
+    for(int& x:v)
+        cout << depth[x] << " ";
+    cout << nl;
 }
 int main(void)
 {

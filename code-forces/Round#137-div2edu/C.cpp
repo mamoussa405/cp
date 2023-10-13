@@ -234,7 +234,54 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int n;
+   cin >> n;
+   string lids;
+   cin >> lids;
+   vi v(n);
+   cin >> v;
+   ll ans{0};
+   int cr{-1};
+   for (int i = n - 1; i >= 0; --i) {
+    if (i == 0) {
+        if (lids[i] == '1') ans += v[i];
+        break;
+    }
+    if (lids[i] == '0' && cr != -1) {
+        if (v[i] >= cr)
+        {
+            if (v[i] > v[i-1]) {
+                lids[i] = '1';
+                ans += v[i];
+                cr = -1;
+            } else {
+                if (v[i-1] == '0') {
+                    lids[i-1] = '1';
+                    cr = -1;
+                } else cr = v[i];
+            }
+        } else {
+            ans += cr;
+            cr = -1;
+        }
+        continue;
+    }
+    if (v[i] < v[i-1]) {
+        if (lids[i] == '1' && lids[i - 1] == '1')
+            cr = v[i];
+        else if (lids[i] == '1' && lids[i-1] == '0'){
+            if (cr != -1) {
+                lids[i-1] = '1';
+                ans += v[i];
+                cr = -1;
+            }
+            else
+                swap(lids[i], lids[i-1]);
+        } 
+    } else if (v[i] > v[i-1])
+        if (lids[i] == '1') ans += v[i];
+   }
+   cout << ans << nl;
 }
 int main(void)
 {

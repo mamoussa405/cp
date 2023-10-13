@@ -234,7 +234,34 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int n;
+   cin >> n;
+   vi v(n);
+   cin >> v;
+   int start{0}, end{0};
+   int n_valley{0};
+   if (n == 1) {
+    cout << "YES" << nl;
+    return;
+   }
+    bool found{false};
+   while (end < n) {
+    if (v[start] != v[end]) {
+        found = true;
+        --end;
+        if ((start != 0 && end != n - 1) && (v[start - 1] > v[start] && v[end] < v[end + 1]))
+            ++n_valley;
+        else if (start == 0 && end != n - 1 && v[end] < v[end + 1])
+            ++n_valley;
+        else if (end == n - 1 && v[start - 1] > v[start])
+            ++n_valley;
+        ++end;
+        start = end;
+    } else ++end;
+   }
+   if (start != 0 && v[start - 1] > v[start]) ++n_valley;
+   if (!found && !n_valley) cout << "YES\n";
+   else cout << ((n_valley == 1) ? "YES":"NO") << nl;
 }
 int main(void)
 {

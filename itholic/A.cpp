@@ -234,7 +234,39 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+ int n;
+ cin >> n;
+ string name;
+ vpii cor;
+ n *= 2;
+ while (n--) {
+    cin >> name;
+    int x, y;
+    cin >> x >> y;
+    cor.push_back({x,y});
+ } 
+ double ans{0.0};
+
+ for (int i = 0; i < cor.size(); ++i) {
+    if (cor[i].first == -1) continue;
+    double dis{1e18};
+    int index;
+
+    for (int j = i + 1; j < cor.size(); ++j) {
+        if (cor[j].first == -1) continue;
+        double cur_dis = (double)sqrt(bexp(cor[i].first - cor[j].first, 2) + bexp(cor[i].second - cor[j].second, 2));
+        if (cur_dis < dis) {
+            dis = cur_dis;
+            index = j;
+        }
+    }
+    ans += dis;
+    cor[index].first = -1;
+    cor[index].second = -1;
+    cor[i].first = -1;
+    cor[i].second = -1;
+ }
+ cout << ans << nl;
 }
 int main(void)
 {

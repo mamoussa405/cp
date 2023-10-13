@@ -231,16 +231,47 @@ void setIO(string name = "")
       FILE* cout = freopen(string(name + ".out").c_str(), "w", stdout);
     }
 }
-
+bool is_prime(int x) {
+    for (int i = 2; i <= sqrt(x); ++i)
+        if (!(x%i)) return false;
+    return true;
+}
+vi get_valid_primes(int x) {
+    vi res;
+    for (int i = 2; i <= sqrt(x); ++i)
+        if (is_prime(i)) res.push_back(i);
+    return res;
+}
+vi factorization(int x) {
+    vi primes = get_valid_primes(x);
+    vi res;
+    for (int& p:primes) {
+        if (p*p > x) {
+            if (x > 1) {
+                res.push_back(x);
+                x = 1;
+            }
+        } else {
+            while (x%p == 0) {
+                res.push_back(p);
+                x /= p;
+            }
+        }
+    }
+    return res;
+}
 void solve(void)
 {
-    
+    int x;
+    // cin >> x;
+    // factorization(x);
+    cout << bexp(3,5) << nl;
 }
 int main(void)
 {
     setIO("");
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
         solve();
     return 0;

@@ -234,7 +234,19 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int a,b;
+   cin >> a >> b;
+   int ans{0};
+   int choosed_number{10};
+   int diff = max(a,b) - min(a,b);
+   while (diff) {
+    if (diff >= choosed_number) {
+        ans += (diff / choosed_number);
+        diff = (diff % choosed_number);
+        --choosed_number;
+    } else --choosed_number;
+   }
+   cout << ans << nl;
 }
 int main(void)
 {

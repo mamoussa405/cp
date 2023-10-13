@@ -234,7 +234,18 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   int n;
+   cin >> n;
+   vi v(n);
+   cin >> v;
+   vi tmp(all(v));
+   sort(v.rbegin(), v.rend());
+   for(int& x:tmp) {
+    if (x == v[0]) {
+        cout << x - v[1] << ' ';
+    } else cout << x - v[0] << ' ';
+   }
+   cout << nl;
 }
 int main(void)
 {
