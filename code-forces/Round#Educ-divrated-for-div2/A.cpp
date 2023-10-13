@@ -1,5 +1,4 @@
-// #include <bits/stdc++.h>
-#include "stdc++.h"
+#include <bits/stdc++.h>
 using namespace std;
 #define all(cont) cont.begin(), cont.end()
 #define rall(cont) cont.end(), cont.begin()
@@ -232,24 +231,15 @@ void setIO(string name = "")
       FILE* cout = freopen(string(name + ".out").c_str(), "w", stdout);
     }
 }
-int get_left_most_bit(int n)
-{
-    for(int i = 31; i >= 0; --i)
-        if (n&(1<<i)) return i;
-    return 0;
-}
 
 void solve(void)
 {
     int n;
     cin >> n; 
-    if (__builtin_popcount(n) == 1)
-    {
-        cout << n - 1 << nl;
-        return;
-    }
-    int left_most_bit = get_left_most_bit(n);
-    cout << (1<<left_most_bit) - 1 << nl;
+    if (n <= 4)
+        cout << "Bob" << endl;
+    else
+        cout << "Alice" << endl;
 }
 int main(void)
 {

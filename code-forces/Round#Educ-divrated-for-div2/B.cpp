@@ -1,5 +1,5 @@
-// #include <bits/stdc++.h>
-#include "stdc++.h"
+#include <bits/stdc++.h>
+// #include "std++.h"
 using namespace std;
 #define all(cont) cont.begin(), cont.end()
 #define rall(cont) cont.end(), cont.begin()
@@ -232,24 +232,53 @@ void setIO(string name = "")
       FILE* cout = freopen(string(name + ".out").c_str(), "w", stdout);
     }
 }
-int get_left_most_bit(int n)
-{
-    for(int i = 31; i >= 0; --i)
-        if (n&(1<<i)) return i;
-    return 0;
-}
 
 void solve(void)
 {
+   int q;
+   vector<int> ch;
+   vector<bool> ans;
+   bool still_sorted{true};
+   cin >> q;
+   while (q--)
+   {
     int n;
-    cin >> n; 
-    if (__builtin_popcount(n) == 1)
+    cin >> n;
+    if (ch.empty() || ch.size() == 1)
     {
-        cout << n - 1 << nl;
-        return;
+        ch.pb(n);
+        ans.pb(1);
+        if (n < ch.front())
+            still_sorted = false;
     }
-    int left_most_bit = get_left_most_bit(n);
-    cout << (1<<left_most_bit) - 1 << nl;
+    else {
+        if (still_sorted)
+        {
+            if (n < ch.back())
+            {
+                ch.pb(n);
+                ans.pb(1);
+                still_sorted = false;
+            }
+            else
+            {
+                ch.pb(n);
+                ans.pb(1);
+            }
+        }
+        else
+        {
+            if ((n < ch.back() && n < ch.front()) || (n > ch.back() && n > ch.front())) ans.pb(0);
+            else {
+                ans.pb(1);
+                ch.pb(n);
+            } 
+        }
+    }
+   }
+   for (bool x : ans)
+    cout << x;
+    cout << nl;
 }
 int main(void)
 {
