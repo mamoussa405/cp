@@ -4,7 +4,7 @@ using namespace std;
 #define all(cont) cont.begin(), cont.end()
 #define rall(cont) cont.rbegin(), cont.rend()
 #define iter(it, l) for (auto it = l.begin(); it != l.end(); ++it)
-#define riter(it, l) for (auto it = l.rbegin(); it != l.rend(); ++it)
+#define riter(it, l) for (auto it = --l.end(); it != l.begin(); --it)
 #define nl "\n"
 #define mp make_pair
 #define pb push_back
@@ -233,9 +233,43 @@ void setIO(string name = "")
     }
 }
 
+ll _max(ll d1, ll d2, ll d3, ll d4) {
+    ll ans = d1;
+    ans = max(ans, d2);
+    ans = max(ans, d3);
+    ans = max(ans, d4);
+    return ans;
+}
+
 void solve(void)
 {
-    
+    ll n,m;
+    cin >> n >> m;
+    vi a(n);
+    vi b(m);
+    cin >> a;
+    cin >> b;
+    sort(all(a));
+    sort(rall(b));
+    ll pr = 0, suf = 0;
+    ll j = m - 1, l = n - 1;
+    ll ans;
+    for (int k = 0; k < n; ++k)
+    {
+        suf += abs(a[l] - b[j]);
+        --l;
+        --j;
+    }
+    ++j;
+    ans = suf;
+    for (int i = 0; i < n; ++i)
+    {
+        suf -= abs(a[i] - b[j]);
+        pr += abs(a[i] - b[i]);
+        ans = max(ans, suf + pr);
+        ++j;
+    }
+    cout << ans << nl;
 }
 int main(void)
 {

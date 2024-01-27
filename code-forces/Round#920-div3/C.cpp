@@ -2,9 +2,9 @@
 #include "std++.h"
 using namespace std;
 #define all(cont) cont.begin(), cont.end()
-#define rall(cont) cont.rbegin(), cont.rend()
+#define rall(cont) cont.end(), cont.begin()
 #define iter(it, l) for (auto it = l.begin(); it != l.end(); ++it)
-#define riter(it, l) for (auto it = l.rbegin(); it != l.rend(); ++it)
+#define riter(it, l) for (auto it = --l.end(); it != l.begin(); --it)
 #define nl "\n"
 #define mp make_pair
 #define pb push_back
@@ -235,7 +235,24 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+    ll n,f,a,b;
+    cin >> n >> f >> a >> b; 
+    vi m(n);
+    cin >> m;
+
+    for (int i = 0; i < n; ++i) {
+        if (f <= 0) {
+            cout << "NO" << nl;
+            return;
+        }
+        ll prev = (i) ? m[i - 1] : 0;
+        f -= min((m[i] - prev) * a, b);
+    }
+    if (f <= 0) {
+        cout << "NO" << nl;
+        return;
+    }
+    cout << "YES" << nl;
 }
 int main(void)
 {

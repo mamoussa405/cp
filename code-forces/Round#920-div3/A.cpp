@@ -1,10 +1,10 @@
 // #include <bits/stdc++.h>
-#include "std++.h"
+# include "std++.h"
 using namespace std;
 #define all(cont) cont.begin(), cont.end()
-#define rall(cont) cont.rbegin(), cont.rend()
+#define rall(cont) cont.end(), cont.begin()
 #define iter(it, l) for (auto it = l.begin(); it != l.end(); ++it)
-#define riter(it, l) for (auto it = l.rbegin(); it != l.rend(); ++it)
+#define riter(it, l) for (auto it = --l.end(); it != l.begin(); --it)
 #define nl "\n"
 #define mp make_pair
 #define pb push_back
@@ -235,7 +235,14 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+   vvi cor(4, vi(2));
+
+    for (int i = 0; i < 4; ++i) 
+        cin >> cor[i][0] >> cor[i][1];
+    sort(all(cor), [](vi &a, vi &b) {
+        return a[1] < b[1];
+    });
+    cout << abs(cor[0][0] - cor[1][0]) * abs(cor[2][0] - cor[3][0]) << nl;
 }
 int main(void)
 {

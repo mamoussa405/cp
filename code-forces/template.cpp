@@ -1,9 +1,10 @@
-#include <bits/stdc++.h>
+// #include <bits/stdc++.h>
+#include "std++.h"
 using namespace std;
 #define all(cont) cont.begin(), cont.end()
-#define rall(cont) cont.end(), cont.begin()
+#define rall(cont) cont.rbegin(), cont.rend()
 #define iter(it, l) for (auto it = l.begin(); it != l.end(); ++it)
-#define riter(it, l) for (auto it = --l.end(); it != l.begin(); --it)
+#define riter(it, l) for (auto it = l.rbegin(); it != l.rend(); ++it)
 #define nl "\n"
 #define mp make_pair
 #define pb push_back
