@@ -233,13 +233,106 @@ void setIO(string name = "")
     }
 }
 
+struct PathScore
+{
+    ll score;
+    ll max_sink_idx;
+    PathScore(ll score, ll max_sink_idx): score(score), max_sink_idx(max_sink_idx){}
+};
+struct Node
+{
+    ll node_idx;
+    ll score;
+    ll max_sink_idx;
+    Node(ll node_idx, ll score, ll max_sink_idx): node_idx(node_idx), \
+    score(score), max_sink_idx(max_sink_idx) {}
+};
+
+vector<PathScore> path_score;
+
+void get_path_score(vi& v, vvi& g, ll n)
+{
+    queue<Node> q;
+    vector<bool>  vis(n + 1, 0);
+
+    q.push(Node(1, v[0], 0));
+    vis[1] = 1;
+    while (!q.empty())
+    {
+        Node curr = q.front();
+        q.pop();
+        if (g[curr.node_idx].empty())
+            path_score.push_back(PathScore(curr.score, curr.max_sink_idx));
+        for (ll i = 0; i < sz(g[curr.node_idx]); ++i)
+        {
+            ll ne = g[curr.node_idx][i];
+            if (!vis[ne])
+            {
+                ll power = v[ne - 1];
+                ll idx;
+                if (min((ll)v[curr.max_sink_idx], power) == v[curr.max_sink_idx])
+                    idx = curr.max_sink_idx;
+                else
+                    idx = ne - 1;
+                q.push(Node(ne, curr.score + power, idx));
+                vis[ne] = 1;
+            }
+        }
+    }
+}
+
 void solve(void)
 {
-    
+    ll n;
+    cin >> n;
+    vi v(n);
+    cin >> v;
+    vvi g(n + 1);
+    ll e = n - 1;
+
+    while (e--)
+    {
+        ll x,y;
+        cin >> x >> y;
+        g[x].pb(y);
+    }
+    get_path_score(v, g, n);
+    ll curr_score = 0;
+    ll ans = 0;
+    // cout << path_score.size() << nl;
+    for (PathScore& x : path_score)
+        curr_score += x.score;
+    PathScore *sink_adr = NULL;
+    ll sink_idx;
+    for (PathScore& x : path_score) 
+    {
+        if (v[x.max_sink_idx] >= 0)
+            continue;
+        ll new_score = curr_score - x.score + (x.score - v[x.max_sink_idx]);
+        if (new_score > ans)
+        {
+            ans = new_score;
+            sink_adr = &x;
+            sink_idx = x.max_sink_idx;
+        }
+    }
+    cout << ans << nl;
+    if (sink_adr)
+    {
+        for (PathScore& x : path_score)
+        {
+            if (&x == sink_adr)
+                continue;
+            if (x.max_sink_idx == sink_idx)
+                ans += (x.score + (x.score - v[x.max_sink_idx]));
+        }
+    }
+    cout << ans << nl;
 }
+
 int main(void)
 {
-    setIO("");
+    setIO("input");
     int t = 1;
     cin >> t;
     while (t--)

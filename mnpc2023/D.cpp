@@ -235,13 +235,38 @@ void setIO(string name = "")
 
 void solve(void)
 {
-    
+    string s;
+    cin >> s;
+    int q;
+    cin >> q;
+
+    while (q--)
+    {
+        bool n;
+        cin >> n;
+        if (n) {
+            string p;
+            cin >> p;
+            int idx = s.find(p);
+            if (idx != string::npos) {
+                cout << idx + 1 << nl;
+            } else {
+                cout << -1 << nl;
+            }
+            cin.ignore();
+        } else {
+            int idx;
+            char c;
+            cin >> idx >> c;
+            s[idx - 1] = c;
+        }
+    }
 }
 int main(void)
 {
     setIO("");
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
         solve();
     return 0;

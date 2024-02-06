@@ -1,5 +1,5 @@
-// #include <bits/stdc++.h>
-#include "std++.h"
+#include <bits/stdc++.h>
+// #include "std++.h"
 using namespace std;
 #define all(cont) cont.begin(), cont.end()
 #define rall(cont) cont.rbegin(), cont.rend()
@@ -233,9 +233,36 @@ void setIO(string name = "")
     }
 }
 
+bool is_prime(ll n)
+{
+    if (n == 1)
+        return 0;
+    for (ll i = 2; i <= sqrt(n); ++i)    
+        if (n%i == 0) return 0;
+    return 1;
+}
+
+ll gcd(ll a, ll b)
+{
+    if (b == 0) return a;
+    return gcd(b, a%b);
+}
+
 void solve(void)
 {
-    
+    ll n;
+    cin >> n;
+    n = (n % 2) ? n - 1 : n;
+
+    for (int i = n - 1; i >= 1; --i)
+    {
+       if (n % i == 0)
+       {
+        cout << i << nl;
+        return;
+       }
+    }
+    cout << 1 << nl;
 }
 int main(void)
 {

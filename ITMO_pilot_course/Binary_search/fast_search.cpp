@@ -1,5 +1,5 @@
-// #include <bits/stdc++.h>
-#include "std++.h"
+#include <bits/stdc++.h>
+// #include "std++.h"
 using namespace std;
 #define all(cont) cont.begin(), cont.end()
 #define rall(cont) cont.rbegin(), cont.rend()
@@ -233,15 +233,65 @@ void setIO(string name = "")
     }
 }
 
+ll get_index(vi& v, ll x, bool is_l)
+{
+    int start = 0, end = sz(v) - 1;
+    int mid = 0;
+    while (start <= end)
+    {
+        mid = (end + start) / 2;
+        if (v[mid] == x) {
+            if (is_l) {
+                while (mid >= 0 && v[mid] == x)
+                    --mid;
+                return mid + 1;
+            } else {
+                while (mid < sz(v) && v[mid] == x)
+                    ++mid;
+                return mid - 1;
+            }
+        }
+        if (v[mid] < x)
+            start = mid + 1;
+        else
+            end = mid - 1;
+    }
+    if (is_l) {
+        while (mid >= 0 && v[mid] > x)
+            --mid;
+        return mid + 1;
+    } else {
+        while (mid < sz(v) && v[mid] < x)
+            ++mid;
+        return mid - 1;
+    }
+    return -1;
+}
+
 void solve(void)
 {
-    
+    ll n;
+    cin >> n;
+    vi v(n);
+    cin >> v;
+    ll k;
+    cin >> k;
+
+    sort(all(v));
+    while (k--)
+    {
+        ll l,r;
+        cin >> l >> r;
+        ll l_idx = get_index(v, l, 1);
+        ll r_idx = get_index(v, r, 0);
+        cout << r_idx - l_idx + 1 << " ";
+    }
 }
 int main(void)
 {
     setIO("");
     int t = 1;
-    cin >> t;
+    // cin >> t;
     while (t--)
         solve();
     return 0;
